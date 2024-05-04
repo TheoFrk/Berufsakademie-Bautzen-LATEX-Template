@@ -1,0 +1,134 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+
+%\userpackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{csquotes}
+
+%BIBLATEX
+
+\usepackage[
+backend=biber,
+%style=alphabetic,
+]{biblatex-chicago}
+
+\setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben 
+\setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile 
+\bibliography{references} % gleich wie \bibliography{Literatur} nur bei biber
+
+%GLOSSARIES
+
+\usepackage[
+nonumberlist, % keine Seitenzahlen anzeigen 
+%automake,
+%xindy={language=german-din},% Sortiert Einträge im Verzeichnis 
+acronym, % Abkürzungsverzeichnis erstellen 
+symbols, % Symbolverzeichnis erstellen 
+nomain, % kein Glossar 
+translate=babel,% 
+nogroupskip,% Vertikaler Spalt 
+toc,% Verlinkung im Inhaltsverzeichnis 
+section=chapter,% 
+]{glossaries} 
+
+%\makeglossaries
+
+%Formationseinsteillung
+
+\usepackage[
+a4paper,
+left=40mm,
+right=20mm,
+top=20mm,
+bottom=20mm,
+] {geometry}
+
+%Setting
+
+\title{TITEL} %TODO TITEL
+\author{Theodor Ferdinand Frank}
+\date{DATUM} %TODO DATUM
+
+\addbibresource{references.bib}
+\linespread{1.5}
+\setlength{\parindent}{0em}
+
+%Bibliography
+
+
+
+
+
+\begin{document}
+
+%\includepdf[page={page number}]{filename}
+
+\begin{abstract}
+Your abstract here.
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Einleitung}
+Lorem Ipsum bla\autocite{Dud14} bla bla As stated by %\cite{Dud14} 
+blas bla bla
+
+\section{Hauptteil}
+Your main part here.
+
+\section{Fazit}
+Your summary here.
+
+
+\newpage
+\section{Quellenverzeichnis}
+
+
+\printbibliography
+\newpage
+
+\section{Anhang}
+Your attachments here.
+
+\subsection{Anlagenverzeichnis}
+Your attachments here.
+
+\subsection{Abkürzungsverzeichnis}
+%\makeglossaries
+
+
+\newpage
+\section{Selbstständigkeitserklärung}
+
+Ich (Wir) erkläre(n) an Eides statt, dass ich (wir) die vorliegende Arbeit (entsprechend der genannten Verantwortlichkeit) selbstständig und nur unter Verwendung der angegebenen Quellen und Hilfsmittel angefertigt habe(n). 
+\medskip
+
+Die Zustimmung der Firma zur Verwendung betrieblicher Unterlagen habe(n) ich (wir) eingeholt. Die Arbeit wurde bisher in gleicher oder ähnlicher Form weder veröffentlicht noch einer anderen Prüfungsbehörde vorgelegt.
+\medskip
+
+Ich versichere weiterhin, dass die auf elektronischem Wege eingereichten Unterlagen mit den schriftlichen Ausfertigungen übereinstimmen.
+
+\vspace{15mm}
+\hfill%
+\begin{tabular}[t]{c}
+  \rule{10em}{0.4pt}\\ Theodor Ferdinand Frank
+\end{tabular}%
+\hfill%
+\begin{tabular}[t]{c}
+  \rule{10em}{0.4pt}\\ Ort, Abgabetermin
+\end{tabular}%
+\hfill\strut
+
+
+\end{document}
