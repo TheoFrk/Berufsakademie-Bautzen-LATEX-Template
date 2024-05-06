@@ -5,15 +5,24 @@
 
 %\userpackage{pdfpages}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{acronym}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{titling}
 \usepackage{listings}
 \usepackage{float}
+\usepackage{lastpage}
 \usepackage{setspace}
 \usepackage{csquotes}
+\usepackage{pdfpages}
+\usepackage{tikz}
+
+\usepackage{helvet}
+
 
 %BIBLATEX
 
@@ -55,9 +64,14 @@ bottom=20mm,
 
 %Setting
 
-\title{TITEL} %TODO TITEL
+\title{TITEL}
 \author{Theodor Ferdinand Frank}
-\date{DATUM} %TODO DATUM
+\date{ABGABETERMIN}
+\def\semgroup{1BRXX-1}
+\def\matnum{100XXXX} %matriculation number
+\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bauten} % University
+\def\papertype{Reflexionsbericht/Seminararbeit} % type of paper
+\def\reviewer{Titel Max Musterbetreuer, Firma} % type of paper
 
 %Bibliography
 \addbibresource{references.bib}
@@ -74,27 +88,45 @@ bottom=20mm,
 
 \begin{document}
 
-%\includepdf[page={page number}]{filename}
 
-\begin{abstract}
+\begin{titlepage}
+ {\fontfamily{phv}\selectfont
+\includepdf[pagecommand={\begin{tikzpicture}[remember picture, overlay]
+		\node at ([xshift=0.2cm,yshift=6.68cm] current page.center) {{\centering \textbf{\thetitle}}};
+            \node at ([xshift=.188cm,yshift=2.36cm] current page.center) {{\centering \papertype}};
+            \node at ([xshift=0.188cm,yshift=-2.53cm] current page.center) {{\centering \theauthor}};
+            \node at ([xshift=0.188cm,yshift=-3.07cm] current page.center) {{\centering Seminargruppe \semgroup}};
+            \node at ([xshift=0.188cm,yshift=-3.51cm] current page.center) {{\centering Matrikelnr. \matnum}};
+            \node at ([xshift=0.188cm,yshift=-5.0cm] current page.center) {{\centering am \thedate}};
+            \node at ([xshift=-5.09cm,yshift=-9.36cm] current page.center) {\reviewer};
+	\end{tikzpicture}}]{Titelseite.pdf} %TODO Anpassen!!
+ }
+\end{titlepage} 
+
+\section*{Autorenreferat}
+Frank, Theodor: \newline
+\thetitle{\ -} \the\year{} - \pageref{LastPage} Bl. \newline
+\pubUniversity, \papertype, \the\year{}
+\newline
+\par
 Your abstract here.
 \thispagestyle{empty}
-\end{abstract}
 
 \newpage
 
 
 \tableofcontents
 \thispagestyle{empty}
-
-
 \newpage
 
+%Verzeichnisse opt.
 
 
 \section{Einleitung}
 Lorem Ipsum bla\autocite{moews_kosten-_2002} bla bla As stated by 
-blas bla bla
+blas bla bla 
+In dieser Arbeit wird das Konzept der Künstlichen Intelligenz (KI) untersucht.
+
 
 \section{Hauptteil}
 Your main part here.
@@ -116,12 +148,18 @@ Your attachments here.
 \subsection{Anlagenverzeichnis}
 Your attachments here.
 
-\subsection{Abkürzungsverzeichnis}
+\section{Abkürzungsverzeichnis} \label{Abkürzungsverzeichnis}
+
+\begin{acronym}
+	\acro{KI}{Künstliche Intelligenz}
+\end{acronym}
+
 %\makeglossaries
 
 
 \newpage
-\section{Selbstständigkeitserklärung}
+\thispagestyle{empty}
+\section*{Selbstständigkeitserklärung}
 
 Ich (Wir) erkläre(n) an Eides statt, dass ich (wir) die vorliegende Arbeit (entsprechend der genannten Verantwortlichkeit) selbstständig und nur unter Verwendung der angegebenen Quellen und Hilfsmittel angefertigt habe(n). 
 \medskip
@@ -134,11 +172,11 @@ Ich versichere weiterhin, dass die auf elektronischem Wege eingereichten Unterla
 \vspace{15mm}
 \hfill%
 \begin{tabular}[t]{c}
-  \rule{10em}{0.4pt}\\ Theodor Ferdinand Frank
+	\rule{10em}{0.4pt} \\ Theodor Ferdinand Frank
 \end{tabular}%
 \hfill%
 \begin{tabular}[t]{c}
-  \rule{10em}{0.4pt}\\ Ort, Abgabetermin
+	\rule{10em}{0.4pt} \\ Dresden, \today
 \end{tabular}%
 \hfill\strut
 
