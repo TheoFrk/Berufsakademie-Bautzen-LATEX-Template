@@ -26,6 +26,8 @@
 
 %BIBLATEX
 
+%BIBLATEX
+
 \usepackage[
 backend=biber,
 %style=alphabetic,
@@ -33,24 +35,49 @@ backend=biber,
 
 \setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben 
 \setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile 
-\bibliography{references} % gleich wie \bibliography{Literatur} nur bei biber
 
+% Bibliography file
+\addbibresource{build/bib/law.bib}
+\addbibresource{build/bib/references.bib}
+
+\DeclareBibliographyCategory{law}
+\addtocategory{law}{aktg1965}
+
+
+\DeclareFieldFormat[article,book,inbook,incollection,inproceedings,misc,thesis,unpublished]{title}{#1}
+
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{% Nur bei Artikeln
+    \printtext{\bibstring{in}\intitlepunct}}{}}
+
+\DeclareBibliographyDriver{misc}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/editor+others/translator+others}%
+  \setunit{\printdelim{nametitledelim}}\newblock
+  \usebibmacro{title}%
+  \setunit{\space}\newblock
+  \printfield{journaltitle}%
+  \setunit*{\addspace}\newblock
+  \printfield{volume}%
+  \setunit*{\addcomma\space}\newblock
+  \printfield{pages}%
+  \setunit{\addcomma\space}\newblock
+  \printfield{note}%
+  \usebibmacro{finentry}}
+
+
+\linespread{1.5}
+\setlength{\parindent}{0em}
 %GLOSSARIES
 
-\usepackage[
-nonumberlist, % keine Seitenzahlen anzeigen 
-%automake,
-%xindy={language=german-din},% Sortiert Einträge im Verzeichnis 
-acronym, % Abkürzungsverzeichnis erstellen 
-symbols, % Symbolverzeichnis erstellen 
-nomain, % kein Glossar 
-translate=babel,% 
-nogroupskip,% Vertikaler Spalt 
-toc,% Verlinkung im Inhaltsverzeichnis 
-section=chapter,% 
-]{glossaries} 
+\usepackage{glossaries} 
 
-%\makeglossaries
+\newglossary[slg]{acronyms}{syi}{syo}{Symbol List}
+
+\loadglsentries{build/acronyms/acronyms.tex}
+\makeglossaries
+
 
 %Formationseinsteillung
 
@@ -64,9 +91,9 @@ bottom=20mm,
 
 %Setting
 
-\title{TITEL}
-\author{Theodor Ferdinand Frank}
-\date{ABGABETERMIN}
+\title{[Thema]}
+\author{Max Musterstudent}
+\date{xx.xx.xxxx}
 \def\semgroup{1BRXX-1}
 \def\matnum{100XXXX} %matriculation number
 \def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bauten} % University
@@ -74,9 +101,7 @@ bottom=20mm,
 \def\reviewer{Titel Max Musterbetreuer, Firma} % type of paper
 
 %Bibliography
-\addbibresource{references.bib}
-\linespread{1.5}
-\setlength{\parindent}{0em}
+
 
 %Page Numbering
 \pagestyle{fancy}
@@ -98,8 +123,9 @@ bottom=20mm,
             \node at ([xshift=0.188cm,yshift=-3.07cm] current page.center) {{\centering Seminargruppe \semgroup}};
             \node at ([xshift=0.188cm,yshift=-3.51cm] current page.center) {{\centering Matrikelnr. \matnum}};
             \node at ([xshift=0.188cm,yshift=-5.0cm] current page.center) {{\centering am \thedate}};
-            \node at ([xshift=-5.09cm,yshift=-9.36cm] current page.center) {\reviewer};
-	\end{tikzpicture}}]{Titelseite.pdf} %TODO Anpassen!!
+            \node [align=left] at ([xshift=-5.09cm,yshift=-9.36cm] current page.center) {\reviewer};
+            \node at ([xshift=-6.3cm,yshift=12.4cm] current page.center) {\includegraphics[scale=1.25] {build/pics/logo.png}};
+	\end{tikzpicture}}]{build/pics/title.pdf} %TODO Anpassen!!
  }
 \end{titlepage} 
 
@@ -114,19 +140,22 @@ Your abstract here.
 
 \newpage
 
-
+%\section*{Inhaltsverzeichnis}
 \tableofcontents
 \thispagestyle{empty}
 \newpage
 
 %Verzeichnisse opt.
-
+%\section*{Abkürzungsverzeichnis}
+\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis]
+\thispagestyle{empty}
+\newpage
 
 \section{Einleitung}
 Lorem Ipsum bla\autocite{moews_kosten-_2002} bla bla As stated by 
 blas bla bla 
-In dieser Arbeit wird das Konzept der Künstlichen Intelligenz (KI) untersucht.
-
+Here we talk about the \gls{ml} and the \gls{ai} in detail. and \gls{ml}
+Wie im Aktiengesetz \autocite{aktg1965} und in der Literatur
 
 \section{Hauptteil}
 Your main part here.
@@ -136,10 +165,12 @@ Your summary here.
 
 
 \newpage
-\section{Quellenverzeichnis}
+%\section*{Quellenverzeichnis}
+\printbibliography[title=Quellenverzeichnisverzeichnis, heading=bibnumbered]
+\newpage
 
-
-\printbibliography
+%\section*{Rechtsquellenverzeichnis}
+\printbibliography[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered]
 \newpage
 
 \section{Anhang}
@@ -148,11 +179,6 @@ Your attachments here.
 \subsection{Anlagenverzeichnis}
 Your attachments here.
 
-\section{Abkürzungsverzeichnis} \label{Abkürzungsverzeichnis}
-
-\begin{acronym}
-	\acro{KI}{Künstliche Intelligenz}
-\end{acronym}
 
 %\makeglossaries
 
