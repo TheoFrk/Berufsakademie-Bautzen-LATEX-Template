@@ -1,9 +1,10 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 
 %\userpackage{pdfpages}
+\usepackage{lipsum}
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
@@ -20,21 +21,29 @@
 \usepackage{csquotes}
 \usepackage{pdfpages}
 \usepackage{tikz}
+\usepackage[titles]{tocloft}
 
 \usepackage{helvet}
 
+\graphicspath{ {build/images}{images/} }
+%DEF
 
-%BIBLATEX
+\def\authorname#1#2#3{%
+\def\firstname{#1}%
+\def\middlename{#2}%
+\def\lastname{#3}%
+\gdef\theauthor{#1\ #2\ #3} % Globale Definition für den Gebrauch in \author
+\gdef\reversedauthor{#3, #1\ #2} }
 
 %BIBLATEX
 
 \usepackage[
-backend=biber,
-%style=alphabetic,
+	backend=biber,
+	%style=alphabetic,
 ]{biblatex-chicago}
 
-\setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben 
-\setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile 
+\setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben
+\setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile
 
 % Bibliography file
 \addbibresource{build/bib/law.bib}
@@ -43,168 +52,180 @@ backend=biber,
 \DeclareBibliographyCategory{law}
 \addtocategory{law}{aktg1965}
 
-
 \DeclareFieldFormat[article,book,inbook,incollection,inproceedings,misc,thesis,unpublished]{title}{#1}
 
 \renewbibmacro{in:}{%
-  \ifentrytype{article}{% Nur bei Artikeln
-    \printtext{\bibstring{in}\intitlepunct}}{}}
+\ifentrytype{article}{% Nur bei Artikeln
+\printtext{\bibstring{in}\intitlepunct}}{}}
 
 \DeclareBibliographyDriver{misc}{%
-  \usebibmacro{bibindex}%
-  \usebibmacro{begentry}%
-  \usebibmacro{author/editor+others/translator+others}%
-  \setunit{\printdelim{nametitledelim}}\newblock
-  \usebibmacro{title}%
-  \setunit{\space}\newblock
-  \printfield{journaltitle}%
-  \setunit*{\addspace}\newblock
-  \printfield{volume}%
-  \setunit*{\addcomma\space}\newblock
-  \printfield{pages}%
-  \setunit{\addcomma\space}\newblock
-  \printfield{note}%
-  \usebibmacro{finentry}}
-
+\usebibmacro{bibindex}%
+\usebibmacro{begentry}%
+\usebibmacro{author/editor+others/translator+others}%
+\setunit{\printdelim{nametitledelim}}\newblock \usebibmacro{title}%
+\setunit{\space}\newblock \printfield{journaltitle}%
+\setunit*{\addspace}\newblock \printfield{volume}%
+\setunit*{\addcomma\space}\newblock \printfield{pages}%
+\setunit{\addcomma\space}\newblock \printfield{note}%
+\usebibmacro{finentry}}
 
 \linespread{1.5}
 \setlength{\parindent}{0em}
-%GLOSSARIES
-
-\usepackage{glossaries} 
-
-\newglossary[slg]{acronyms}{syi}{syo}{Symbol List}
-
-\loadglsentries{build/acronyms/acronyms.tex}
-\makeglossaries
-
-
-%Formationseinsteillung
-
-\usepackage[
-a4paper,
-left=40mm,
-right=20mm,
-top=20mm,
-bottom=20mm,
-] {geometry}
-
-%Setting
-
-\title{[Thema]}
-\author{Max Musterstudent}
-\date{xx.xx.xxxx}
-\def\semgroup{1BRXX-1}
-\def\matnum{100XXXX} %matriculation number
-\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bauten} % University
-\def\papertype{Reflexionsbericht/Seminararbeit} % type of paper
-\def\reviewer{Titel Max Musterbetreuer, Firma} % type of paper
-
-%Bibliography
-
 
 %Page Numbering
 \pagestyle{fancy}
+
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt} % remove the header rule
 \fancyhead[C]{\thepage} % page number in the center of the header
 
+%Verzeichnisformatierung
+\renewcommand{\cftdot}{}
 
+\renewcommand{\cftfigdotsep}{\cftnodots}
+\renewcommand{\cftfigpresnum}{Abbildung }
+\renewcommand{\cftfigaftersnum}{:}
+\setlength{\cftfignumwidth}{6em}
+
+\renewcommand{\cftfigdotsep}{\cftnodots}
+\renewcommand{\cftfigpresnum}{Tabelle }
+\renewcommand{\cftfigaftersnum}{:}
+\setlength{\cftfignumwidth}{6em}
+
+%GLOSSARIES
+
+\usepackage{glossaries}
+\newglossary[slg]{acronyms}{syi}{syo}{Symbol List}
+\loadglsentries{build/acronyms/acronyms.tex}
+\makeglossaries
+
+%Formationseinsteillung
+
+\usepackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm,]{geometry}
+
+
+%Settings
+%TODO: Anpassen
+\title{[Thema]}
+\authorname{Hans}{Peter}{Musterstudent} %First Name, Middle Name, Last name
+\date{xx.xx.xxxx} %Publish Date
+\def\semgroup{1BRXX-1} %Seminar Group
+\def\matnum{100XXXX} %matriculation number
+\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bauzen} % University
+\def\papertype{Reflexionsbericht/Seminararbeit} % type of paper
+\def\reviewer{Titel Max Musterbetreuer, Firma} % reviewer
+
+
+%Setauthor
+\author{\theauthor}
+
+
+\usepackage{subfiles}
 
 \begin{document}
-
-
-\begin{titlepage}
- {\fontfamily{phv}\selectfont
-\includepdf[pagecommand={\begin{tikzpicture}[remember picture, overlay]
+	\begin{titlepage}
+            {\fontfamily{phv}\selectfont
+            \includepdf[pagecommand={\begin{tikzpicture}[remember picture, overlay]
 		\node at ([xshift=0.2cm,yshift=6.68cm] current page.center) {{\centering \textbf{\thetitle}}};
             \node at ([xshift=.188cm,yshift=2.36cm] current page.center) {{\centering \papertype}};
             \node at ([xshift=0.188cm,yshift=-2.53cm] current page.center) {{\centering \theauthor}};
             \node at ([xshift=0.188cm,yshift=-3.07cm] current page.center) {{\centering Seminargruppe \semgroup}};
             \node at ([xshift=0.188cm,yshift=-3.51cm] current page.center) {{\centering Matrikelnr. \matnum}};
             \node at ([xshift=0.188cm,yshift=-5.0cm] current page.center) {{\centering am \thedate}};
-            \node [align=left] at ([xshift=-5.09cm,yshift=-9.36cm] current page.center) {\reviewer};
-            \node at ([xshift=-6.3cm,yshift=12.4cm] current page.center) {\includegraphics[scale=1.25] {build/pics/logo.png}};
-	\end{tikzpicture}}]{build/pics/title.pdf} %TODO Anpassen!!
- }
-\end{titlepage} 
+            \node[anchor=west] at ([xshift=-8.27cm,yshift=-9.36cm] current page.center) {\reviewer};
+            \node at ([xshift=-6.3cm,yshift=12.4cm] current page.center) {\includegraphics[scale=0.2] {build/images/logo.png}};
+	\end{tikzpicture}}]{build/images/title.pdf} %TODO Anpassen!!
+            }
+        \end{titlepage}
 
-\section*{Autorenreferat}
-Frank, Theodor: \newline
-\thetitle{\ -} \the\year{} - \pageref{LastPage} Bl. \newline
-\pubUniversity, \papertype, \the\year{}
-\newline
-\par
-Your abstract here.
-\thispagestyle{empty}
+	\thispagestyle{empty}
+	\section*{Autorenreferat}
+	\reversedauthor:
+	\newline
+	\thetitle{\ -} \the\year{} - \pageref{LastPage} Bl.
+	\newline
+	\pubUniversity, \papertype, \the\year{}
+	\newline
+	\par Your abstract here.
+	%\thispagestyle{empty}
 
-\newpage
+	\newpage
 
-%\section*{Inhaltsverzeichnis}
-\tableofcontents
-\thispagestyle{empty}
-\newpage
+	%\section*{Inhaltsverzeichnis}
+	\tableofcontents
+	\thispagestyle{empty}
+	\newpage
 
-%Verzeichnisse opt.
-%\section*{Abkürzungsverzeichnis}
-\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis]
-\thispagestyle{empty}
-\newpage
+	%Verzeichnisse opt.
+	%\section*{Abkürzungsverzeichnis}
+	\thispagestyle{empty}
+	\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis]
+	\newpage
 
-\section{Einleitung}
-Lorem Ipsum bla\autocite{moews_kosten-_2002} bla bla As stated by 
-blas bla bla 
-Here we talk about the \gls{ml} and the \gls{ai} in detail. and \gls{ml}
-Wie im Aktiengesetz \autocite{aktg1965} und in der Literatur
+	\section{Einleitung}
+	\subfile{sections/introduction}
 
-\section{Hauptteil}
-Your main part here.
+	\section{Hauptteil}
+	\lipsum[2]
 
-\section{Fazit}
-Your summary here.
+	\section{Fazit}
+	\lipsum[3]
+        
 
+	\newpage
+	%\section*{Quellenverzeichnis}
+	\printbibliography
+	[notcategory=law, title=Quellenverzeichnisverzeichnis, heading=bibnumbered]
+	\newpage
 
-\newpage
-%\section*{Quellenverzeichnis}
-\printbibliography[title=Quellenverzeichnisverzeichnis, heading=bibnumbered]
-\newpage
+	%\section*{Rechtsquellenverzeichnis}
+	\printbibliography
+	[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered]
+	\newpage
 
-%\section*{Rechtsquellenverzeichnis}
-\printbibliography[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered]
-\newpage
+	\section{Anhang}
+	Your attachments here.
 
-\section{Anhang}
-Your attachments here.
+	\subsection{Anlagenverzeichnis}
+	Your attachments here.
 
-\subsection{Anlagenverzeichnis}
-Your attachments here.
+	\newpage
+	\listoffigures
+	\newpage
 
+	\newpage
+	\listoftables
+	\newpage
 
-%\makeglossaries
+	%\makeglossaries
 
+	\newpage
+	\thispagestyle{empty}
+	\section*{Selbstständigkeitserklärung}
 
-\newpage
-\thispagestyle{empty}
-\section*{Selbstständigkeitserklärung}
+	Ich (Wir) erkläre(n) an Eides statt, dass ich (wir) die vorliegende Arbeit (entsprechend
+	der genannten Verantwortlichkeit) selbstständig und nur unter Verwendung der angegebenen
+	Quellen und Hilfsmittel angefertigt habe(n).
+	\medskip
 
-Ich (Wir) erkläre(n) an Eides statt, dass ich (wir) die vorliegende Arbeit (entsprechend der genannten Verantwortlichkeit) selbstständig und nur unter Verwendung der angegebenen Quellen und Hilfsmittel angefertigt habe(n). 
-\medskip
+	Die Zustimmung der Firma zur Verwendung betrieblicher Unterlagen habe(n) ich (wir)
+	eingeholt. Die Arbeit wurde bisher in gleicher oder ähnlicher Form weder
+	veröffentlicht noch einer anderen Prüfungsbehörde vorgelegt.
+	\medskip
 
-Die Zustimmung der Firma zur Verwendung betrieblicher Unterlagen habe(n) ich (wir) eingeholt. Die Arbeit wurde bisher in gleicher oder ähnlicher Form weder veröffentlicht noch einer anderen Prüfungsbehörde vorgelegt.
-\medskip
+	Ich versichere weiterhin, dass die auf elektronischem Wege eingereichten Unterlagen
+	mit den schriftlichen Ausfertigungen übereinstimmen.
 
-Ich versichere weiterhin, dass die auf elektronischem Wege eingereichten Unterlagen mit den schriftlichen Ausfertigungen übereinstimmen.
-
-\vspace{15mm}
-\hfill%
-\begin{tabular}[t]{c}
-	\rule{10em}{0.4pt} \\ Theodor Ferdinand Frank
-\end{tabular}%
-\hfill%
-\begin{tabular}[t]{c}
-	\rule{10em}{0.4pt} \\ Dresden, \today
-\end{tabular}%
-\hfill\strut
-
-
+	\vspace{15mm}
+	\hfill%
+	\begin{tabular}[t]{c}
+		\rule{10em}{0.4pt}      \\
+		Theodor Ferdinand Frank
+	\end{tabular}%
+	\hfill%
+	\begin{tabular}[t]{c}
+		\rule{10em}{0.4pt} \\
+		Dresden, \today
+	\end{tabular}%
+	\hfill\strut
 \end{document}
