@@ -20,8 +20,12 @@
 \RequirePackage{pdfpages}
 \RequirePackage{tikz}
 \RequirePackage[titles]{tocloft}
-
 \RequirePackage{helvet}
+\RequirePackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm,]{geometry}
+\RequirePackage[
+	backend=biber,
+	%style=alphabetic,
+]{biblatex-chicago}
 
 \graphicspath{ {build/images}{images/} }
 %DEF
@@ -35,10 +39,7 @@
 
 %BIBLATEX
 
-\RequirePackage[
-	backend=biber,
-	%style=alphabetic,
-]{biblatex-chicago}
+
 
 \setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile
@@ -97,11 +98,6 @@
 \loadglsentries{build/acronyms/acronyms.tex}
 \makeglossaries
 
-%Formationseinsteillung
-
-\RequirePackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm,]{geometry}
-
-
 %Settings
 %TODO: Anpassen
 \title{[Thema]}
@@ -113,10 +109,8 @@
 \def\papertype{Reflexionsbericht/Seminararbeit} % type of paper
 \def\reviewer{Titel Max Musterbetreuer, Firma} % reviewer
 
-
 %Setauthor
 \author{\theauthor}
-
 
 
 \RequirePackage{subfiles}
