@@ -2,11 +2,12 @@
 \usepackage{build/customizations}
 \usepackage{build/commands}
 
+\DeclareBibliographyCategory{law}
+\addtocategory{law}{aktg1965}
+
 \begin{document}
 	\customtitlepage
-
 	\customauthorsabstract
-	\newline
 	\par Your abstract here.
 	
 
@@ -35,13 +36,11 @@
 
 	\newpage
 	%\section*{Quellenverzeichnis}
-	\printbibliography
-	[notcategory=law, title=Quellenverzeichnisverzeichnis, heading=bibnumbered]
+	\printbibliography[notcategory=law, title=Quellenverzeichnisverzeichnis, heading=bibnumbered]
 	\newpage
 
 	%\section*{Rechtsquellenverzeichnis}
-	\printbibliography
-	[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered]
+	\printbibliography[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered]
 	\newpage
 
 	\section{Anhang}
@@ -63,7 +62,7 @@
 	\newpage
 	\thispagestyle{empty}
 	\section*{Selbstständigkeitserklärung}
-        \subfile{sections/declaration of independence}
+        \subfile{build/sections/declaration of independence}
 
 	
 \end{document}

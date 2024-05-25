@@ -24,5 +24,34 @@
 	\thetitle{\ -} \the\year{} - \pageref{LastPage} Bl.
 	\newline
 	\pubUniversity, \papertype, \the\year{}
+ 	\newline
  }
+
+
+\newbibmacro*{cite:authoryear+page}{%
+  \printnames{labelname}% Autor
+  \setunit*{\addcomma\space}% Komma und Leerzeichen
+  \printfield{year}% Jahr
+  \setunit*{\addcomma\space}% Komma und Leerzeichen
+  \printfield{postnote}% Seitenzahl (Fundstelle)
+}
+
+\DeclareCiteCommand{\autocite}
+  {\booltrue{cbx:parens}}% Klammern aktivieren
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{%
+     (\usebibmacro{cite:authoryear+page})}}% Klammern um das gesamte Zitat
+  {\multicitedelim}
+  {}
+
+% Gesetzeszitate definieren
+% Gesetzeszitate definieren
+\newcommand{\lawcite}[2][]{%
+  (#1 \citetitle{#2})%
+  \nocite{#2}}
+
+  
+  
+%\newcommand{\lawcite}[2][]{\cite[#1]{#2}}
+
 
