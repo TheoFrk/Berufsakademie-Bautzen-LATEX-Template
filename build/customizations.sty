@@ -7,39 +7,64 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{acronym}
 \RequirePackage{hyperref}
-\RequirePackage{lipsum} % Dummy-Text
 \RequirePackage[titles]{tocloft}
-\RequirePackage{subfiles}
 \RequirePackage{pdfpages}
-\RequirePackage{cleverref}
+\RequirePackage{cleveref}
+\RequirePackage{lipsum}
+\RequirePackage[final]{microtype}
+\RequirePackage{caption}
+\RequirePackage{subfiles}
+
 
 % Grafiken Pfade
 \graphicspath{{build/images/}{images/}}
 
-% Definitionen
-\def\authorname#1#2#3{%
-  \def\firstname{#1}%
-  \def\middlename{#2}%
-  \def\lastname{#3}%
-  \gdef\theauthor{#1\ #2\ #3} % Globale Definition für den Gebrauch in \author
-  \gdef\reversedauthor{#3, #1\ #2}
+% Konfiguration der Beschriftungen für Abbildungen und Tabellen
+\captionsetup[figure]{
+    labelfont=bf,            % Fett gedruckte Beschriftung
+    labelsep=period          % Trennzeichen ist ein Punkt
+}
+\captionsetup[table]{
+    labelfont=bf,            % Fett gedruckte Beschriftung
+    labelsep=period          % Trennzeichen ist ein Punkt
 }
 
 
+% Definitionen
+\def\authorname#1#2#3{%
+	\def\firstname{#1}%
+	\def\middlename{#2}%
+	\def\lastname{#3}%
+	\gdef\theauthor{#1\ #2\ #3} % Globale Definition für den Gebrauch in \author
+	\gdef\reversedauthor{#3, #1\ #2}
+}
+
+% Cleveref auf Deutsch setzen
+\crefname{figure}{Abb.}{Abb.}
+\Crefname{figure}{Abbildung}{Abbildungen}
+\crefname{section}{Abschnitt}{Abschnitte}
+\Crefname{section}{Abschnitt}{Abschnitte}
 
 % BibLaTeX Einstellungen
 \setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile
 \addbibresource{build/bib/law.bib}
 \addbibresource{build/bib/references.bib}
+\addbibresource{build/bib/misc.bib}
 
-
+\tolerance 1414
+\hbadness 1414
+\emergencystretch 1.5em
+\hfuzz 0.3pt
+\widowpenalty=10000
+\vfuzz \hfuzz
+\raggedbottom
 
 \DeclareFieldFormat[article,book,inbook,incollection,inproceedings,misc,thesis,unpublished]{title}{#1}
 
 \renewbibmacro{in:}{%
-  \ifentrytype{article}{% Nur bei Artikeln
-  \printtext{\bibstring{in}\intitlepunct}}{}
+	\ifentrytype{article}{% Nur bei Artikeln
+		\printtext{\bibstring{in}\intitlepunct}}{}
 }
 
 \DeclareAutoCiteCommand{footnote}[f]{\cite}{\cite}
@@ -47,31 +72,49 @@
 \DeclareAutoCiteCommand{plain}[f]{\cite}{\cite}
 
 \DeclareBibliographyDriver{legal}{%
-  \printtext[labelname]{%
-    \printfield{title}%
-    \setunit{\addspace}%  
-    \printfield{year}%
-    \setunit{\addspace}%
-    \printfield{number}%
-  }
+	\printtext[labelname]{%
+		\printfield{title}%
+		\setunit{\addspace}%
+		\printfield{year}%
+		\setunit{\addspace}%
+		\printfield{number}%
+	}
 }
 
 \newbibmacro*{cite:law}{%
-  \printnames{labelname}% Autor (Gesetz)
-  \setunit*{\addspace}% Leerzeichen
-  \printfield{postnote}% Paragraph
+	\printnames{labelname}% Autor (Gesetz)
+	\setunit*{\addspace}% Leerzeichen
+	\printfield{postnote}% Paragraph
 }
 
+% \DeclareBibliographyDriver{misc}{%
+% 	\usebibmacro{bibindex}%
+% 	\usebibmacro{begentry}%
+% 	\usebibmacro{author/editor+others/translator+others}%
+% 	\setunit{\printdelim{nametitledelim}}\newblock \usebibmacro{title}%
+% 	\setunit{\space}\newblock \printfield{journaltitle}%
+% 	\setunit*{\addspace}\newblock \printfield{volume}%
+% 	\setunit*{\addcomma\space}\newblock \printfield{pages}%
+% 	\setunit{\addcomma\space}\newblock \printfield{note}%
+% 	\usebibmacro{finentry}}
+
 \DeclareBibliographyDriver{misc}{%
-  \usebibmacro{bibindex}%
-  \usebibmacro{begentry}%
-  \usebibmacro{author/editor+others/translator+others}%
-  \setunit{\printdelim{nametitledelim}}\newblock \usebibmacro{title}%
-  \setunit{\space}\newblock \printfield{journaltitle}%
-  \setunit*{\addspace}\newblock \printfield{volume}%
-  \setunit*{\addcomma\space}\newblock \printfield{pages}%
-  \setunit{\addcomma\space}\newblock \printfield{note}%
-  \usebibmacro{finentry}}
+	\usebibmacro{bibindex}%
+	\usebibmacro{begentry}%
+	\usebibmacro{author/editor+others/translator+others}%
+	\setunit{\printdelim{nametitledelim}}\newblock
+	\usebibmacro{title}%
+	\setunit{\space}\newblock
+	\printfield{journaltitle}%
+	\setunit*{\addspace}\newblock
+	\printfield{volume}%
+	\setunit*{\addcomma\space}\newblock
+	\printfield{pages}%
+	\setunit{\addcomma\space}\newblock
+	\printfield{note}%
+	\setunit{\addcomma\space}\newblock
+	\printfield{url}%
+	\usebibmacro{finentry}}
 
 % Zeilenabstand und Einrückung
 \linespread{1.5}
@@ -83,17 +126,26 @@
 \renewcommand{\headrulewidth}{0pt} % Entfernen der Header-Linie
 \fancyhead[C]{\thepage} % Seitenzahl in der Mitte des Headers
 
-% Verzeichnisformatierung
+% Setzen Sie die Kopfzeilenhöhe auf den empfohlenen Wert
+\setlength{\headheight}{14.5pt}
+
+% Passen Sie den oberen Seitenrand an, um die Änderung auszugleichen
+\addtolength{\topmargin}{-2.5pt}
+
+
+
+% Verzeichnisformatierung für Abbildungen
 \renewcommand{\cftdot}{}
 \renewcommand{\cftfigdotsep}{\cftnodots}
 \renewcommand{\cftfigpresnum}{Abbildung }
 \renewcommand{\cftfigaftersnum}{:}
 \setlength{\cftfignumwidth}{6em}
 
-\renewcommand{\cftfigdotsep}{\cftnodots}
-\renewcommand{\cftfigpresnum}{Tabelle }
-\renewcommand{\cftfigaftersnum}{:}
-\setlength{\cftfignumwidth}{6em}
+% Verzeichnisformatierung für Tabellen
+\renewcommand{\cfttabdotsep}{\cftnodots}
+\renewcommand{\cfttabpresnum}{Tabelle }
+\renewcommand{\cfttabaftersnum}{:}
+\setlength{\cfttabnumwidth}{6em}
 
 % Glossaries
 \RequirePackage{glossaries}
@@ -102,14 +154,13 @@
 \makeglossaries
 
 % Einstellungen (Anpassen)
-\title{[Thema]}
-\authorname{Hans}{Peter}{Musterstudent} % Vorname, Mittelname, Nachname
-\date{xx.xx.xxxx} % Veröffentlichungsdatum
-\def\semgroup{1BRXX-1} % Seminargruppe
-\def\matnum{100XXXX} % Matrikelnummer
-\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bauzen} % Hochschule
-\def\papertype{Reflexionsbericht/Seminararbeit} % Art der Arbeit
-\def\reviewer{Titel Max Musterbetreuer, Firma} % Betreuer
-
+\title{Die Bedeutung der Lernkultur für die Mitarbeiterbindung}
+\authorname{Theodor}{Ferdinand}{Frank} %Vorname, Mittelname, Nachname
+\date{12.07.2024} %
+\def\semgroup{1BR23-1}
+\def\matnum{1002178} % matriculation number
+\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bauten} % University
+\def\papertype{Hausarbeit} % type of paper
+\def\reviewer{Oda Beil, OBTC UG} % reviewer
 % Autor festlegen
 \author{\theauthor}
