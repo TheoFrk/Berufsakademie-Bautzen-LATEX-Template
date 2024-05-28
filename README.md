@@ -40,3 +40,5 @@ Create a file in the `sections/` directory named `sectiontitle.tex`. The main st
 
 
 Put your images in `images/`
+
+For Changes look into 'build/' 
