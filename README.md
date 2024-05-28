@@ -32,7 +32,7 @@ Ensure that you define the bibliography file in the preamble of your `main.tex` 
 
 Example: `\autocite[pagenumber]{citation key}`
 
-# Idea
+# Structure
 
 Defining Sections and Subsections in the `main.tex` document. 
 
