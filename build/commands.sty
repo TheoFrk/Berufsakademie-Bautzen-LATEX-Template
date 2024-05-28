@@ -1,6 +1,6 @@
 \usepackage{customizations}
 
-\newcommand{\customtitlepage}{
+\newcommand{\customtitlepage}[2]{ % #1: logo, #2: scale
     \begin{titlepage}
         {\fontfamily{phv}\selectfont
         \includepdf[pagecommand={\begin{tikzpicture}[remember picture, overlay]
@@ -11,7 +11,7 @@
             \node at ([xshift=0.188cm,yshift=-3.51cm] current page.center) {\centering Matrikelnr. \matnum};
             \node at ([xshift=0.188cm,yshift=-5.0cm] current page.center) {\centering am \thedate};
             \node[anchor=west] at ([xshift=-8.27cm,yshift=-9.36cm] current page.center) {\reviewer};
-            \node at ([xshift=-6.3cm,yshift=12.4cm] current page.center) {\includegraphics[scale=0.2]{build/images/logo.png}};
+            \node at ([xshift=-6.3cm,yshift=12.4cm] current page.center) {\includegraphics[scale=#2]{#1}};
         \end{tikzpicture}}]{build/images/title.pdf}
         }
     \end{titlepage}

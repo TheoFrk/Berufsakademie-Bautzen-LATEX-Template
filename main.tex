@@ -2,21 +2,39 @@
 \usepackage{build/customizations}
 \usepackage{build/commands}
 
+% Settings (EDIT)
+\title{TITLE} % Title of your document
+\authorname{FIRSTNAME}{MIDDLENAME}{LASTNAME} % Leave the middle name blank if you don't have one
+\date{12.07.2024} % Date of submission or publication in DD.MM.YYYY format
+\def\semgroup{SEMGROUP} % Your seminar group
+\def\matnum{matnum} % Your matriculation number
+% University details: Provide the name of your university
+\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bautzen}
+% Type of paper: Specify the type of your paper (e.g., Hausarbeit, Bachelorarbeit, etc.)
+\def\papertype{TypeOfPaper}
+% Reviewer details: Provide the name and affiliation of your reviewer
+\def\reviewer{ReviewerName, Reviewer Company?}
+
+% Redefining META Author out of variables
+\author{\theauthor}
+
 \DeclareBibliographyCategory{law}
 \addtocategory{law}{aktg1965}
 
+%LOOK INTO README.MD
+
+
 \begin{document}
-	\customtitlepage
+	\customtitlepage{build/images/logo.png}{0.1}
         
 	\customauthorsabstract
-	\par Your abstract here.
-        \thispagestyle{empty}
-	
+	\par Your abstract here. %Write Abstract Here
+        \thispagestyle{empty} %remove page number for page
 
-	\newpage
+	\newpage 
 
 	%\section*{Inhaltsverzeichnis}
-	\tableofcontents
+	\tableofcontents %Generate Table of Contents
 	\thispagestyle{empty}
 	\newpage
 
@@ -24,6 +42,7 @@
 	%\section*{Abkürzungsverzeichnis}
 	\thispagestyle{empty}
 	\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis]
+        % Generate Acronym Glossary, delete this if you dont need this
 	\newpage
 
 	\section{Einleitung}
@@ -37,15 +56,14 @@
         
 
 	\newpage
-	%\section*{Quellenverzeichnis}
-	\printbibliography[notcategory=law, title=Quellenverzeichnis, heading=bibnumbered]
+	\printbibliography[notcategory=law, title=Quellenverzeichnis, heading=bibnumbered] %Bibliography
 	\newpage
 
-	%\section*{Rechtsquellenverzeichnis}
-	\printbibliography[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered]
+	
+	\printbibliography[category=law, title=Rechtsquellenverzeichnis, heading=bibnumbered] %LawBibliography - DELETE IF NOT USED
 	\newpage
 
-	\section{Anhang}
+	\section{Anhang} %WIP attachment Glossary
 	Your attachments here.
 
 	\subsection{Anlagenverzeichnis}
