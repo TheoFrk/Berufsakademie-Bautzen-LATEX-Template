@@ -36,7 +36,7 @@ Example: `\autocite[pagenumber]{citation key}`
 
 Defining Sections and Subsections in the `main.tex` document. 
 
-Make a file in `sections/` named `sectiontitle.tex`. 
-The main structure is like in `sample.tex`, see `introduction.tex` for an example.
+Create a file in the `sections/` directory named `sectiontitle.tex`. The main structure should follow the format provided in `sample.tex`; refer to `introduction.tex` as an example. To include this file in your main document, use the command `\subfile{sections/introduction}` in your main document.
+
 
 Put your images in `images/`
