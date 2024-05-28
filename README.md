@@ -2,7 +2,7 @@ This is a LaTeX project template that adheres to the guidelines of BA Bautzen, s
 
 Use it with your own responsibility
 
-Quickstar LATEX:
+Quickstart LATEX:
 - [LaTeX Kurzstart DE](https://learnxinyminutes.com/docs/de-de/latex-de/)
 - [LaTeX Quickstart EN](https://learnxinyminutes.com/docs/latex/)
 
