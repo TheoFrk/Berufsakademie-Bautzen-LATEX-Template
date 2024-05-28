@@ -1,3 +1,7 @@
+This is a LaTeX project template that adheres to the guidelines of BA Bautzen, specifically tailored for economics. This template streamlines the process of creating professional and compliant documents for academic and professional use. 
+
+Use it with your own responsibility
+
 # Custom Commands
 
 Change Custom Commands in `build/commands.sty`  
