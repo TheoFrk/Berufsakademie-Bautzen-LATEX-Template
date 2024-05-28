@@ -42,3 +42,46 @@ Create a file in the `sections/` directory named `sectiontitle.tex`. The main st
 Put your images in `images/`
 
 For Changes look into 'build/' 
+
+### Used Packages
+
+# LaTeX Packages Used
+
+- `inputenc` (with utf8 encoding)
+- `babel` (with german option)
+- `amsmath`
+- `amsfonts`
+- `amssymb`
+- `graphicx`
+- `xcolor`
+- `titling`
+- `listings`
+- `float`
+- `lastpage`
+- `setspace`
+- `csquotes`
+- `tikz`
+- `helvet`
+- `geometry` (with options: a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm)
+- `biblatex-chicago` (with options: backend=biber, authordate, ibidtracker=context)
+- `fancyhdr`
+- `acronym`
+- `hyperref`
+- `tocloft` (with titles option)
+- `pdfpages`
+- `cleveref`
+- `lipsum`
+- `microtype` (with final option)
+- `caption`
+- `subfiles`
+- `glossaries`
+
+## Notes
+
+- Graphics paths are set using `\graphicspath`.
+- Custom caption setup for figures and tables is configured using `\captionsetup`.
+- Custom author definition command `\def\authorname`.
+- Cleveref package is configured for German.
+- Bibliography settings are defined, with resources added using `\addbibresource`.
+- Page formatting and layout adjustments are made for better document appearance.
+
