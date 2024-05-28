@@ -24,11 +24,9 @@ Change Custom Layout and Package Settings in `build/customization.sty`
 - `[§ 164 Absatz 1 Satz 1]` is the optional argument, specifying the section, paragraph, or sentence of the law.
 - `{citation key}` is the mandatory argument, the citation key from the bibliography.
 
----
-
 It is important to place the lawbooks in `build/bib/law.bib`.  
 Ensure that you define the bibliography file in the preamble of your `main.tex` document as follows:  
-`\bibliography{build/bib/law}`
+`\addtocategory{law}{aktg1965, .....}`
 
 ### Use `\autocite` for citing
 
