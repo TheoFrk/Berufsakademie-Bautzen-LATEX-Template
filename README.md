@@ -14,7 +14,7 @@ Change Custom Layout and Package Settings in `build/customization.sty`
 
 ### Explanation of the command `\lawcite`
 
-`\lawcite[§ 164 Absatz 1 Satz 1]{citation key}`
+`\lawcite[§ 1 Absatz 1 Satz 1]{citation key}`
 
 - This command is used to cite a specific section of a law.
 - `[§ 164 Absatz 1 Satz 1]` is the optional argument, specifying the section, paragraph, or sentence of the law.
@@ -32,6 +32,9 @@ Example: `\autocite[pagenumber]{citation key}`
 
 # Idea
 
-Defining Sections and Subsections in the `main.tex` document. Make a file in `sections/` named `sectiontitle.tex`. The main structure is like in `sample.tex`, see `introduction.tex` for an example.
+Defining Sections and Subsections in the `main.tex` document. 
+
+Make a file in `sections/` named `sectiontitle.tex`. 
+The main structure is like in `sample.tex`, see `introduction.tex` for an example.
 
 Put your images in `images/`
