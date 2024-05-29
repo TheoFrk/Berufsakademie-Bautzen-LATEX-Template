@@ -1,6 +1,4 @@
-Hier ist ein Markdown-Dokument, das einen ersten Absatz enthält, in dem der Leser zwischen Deutsch und Englisch wählen kann:
 
-```markdown
 # LaTeX Projektvorlage für BA Bautzen Wirtschaft
 
 Diese LaTeX-Projektvorlage entspricht den Richtlinien der BA Bautzen, speziell zugeschnitten für die Wirtschaftswissenschaften. Sie vereinfacht den Prozess der Erstellung professioneller und richtlinienkonformer Dokumente für akademische und berufliche Zwecke.
@@ -56,7 +54,7 @@ Beispiel:
 
 ```latex
 \autocite[Seitenzahl]{citation key}
-```
+
 
 ### Struktur
 
