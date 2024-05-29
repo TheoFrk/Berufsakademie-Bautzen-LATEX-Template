@@ -1,57 +1,91 @@
-This is a LaTeX project template that adheres to the guidelines of BA Bautzen, specifically tailored for economics. This template streamlines the process of creating professional and compliant documents for academic and professional use. 
+# LaTeX Project Template for BA Bautzen Economics
 
-Use it with your own responsibility
+This LaTeX project template adheres to the guidelines of BA Bautzen, specifically tailored for economics. It streamlines the process of creating professional and compliant documents for academic and professional use.
 
-Quickstart LATEX:
+**Use it with your own responsibility.**
+
+## Quickstart LaTeX
+
 - [LaTeX Kurzstart DE](https://learnxinyminutes.com/docs/de-de/latex-de/)
 - [LaTeX Quickstart EN](https://learnxinyminutes.com/docs/latex/)
 
-# Custom Commands
-
-Change Custom Commands in `build/commands.sty`  
-Change Custom Layout and Package Settings in `build/customization.sty`
-
 ## Custom Commands
 
-- `\customtitlepage{path/to/logo.png}{scale}` - Generate BABautzen Title Page
-- `\customauthorsabstract` - Generate Authorsabstract out of Settings
+### Modify Custom Commands
 
-### Explanation of the command `\lawcite`
+- Custom commands can be changed in `build/commands.sty`.
+- Custom layout and package settings can be changed in `build/customization.sty`.
 
-`\lawcite[§ 1 Absatz 1 Satz 1]{citation key}`
+### Available Commands
+
+- `\customtitlepage{path/to/logo.png}{scale}`: Generate a BA Bautzen title page.
+- `\customauthorsabstract`: Generate an authors' abstract from the settings.
+
+#### Explanation of the Command `\lawcite`
+
+```latex
+\lawcite[§ 1 Absatz 1 Satz 1]{citation key}
+```
 
 - This command is used to cite a specific section of a law.
-- `[§ 164 Absatz 1 Satz 1]` is the optional argument, specifying the section, paragraph, or sentence of the law.
+- `[§ 164 Absatz 1 Satz 1]` is the optional argument specifying the section, paragraph, or sentence of the law.
 - `{citation key}` is the mandatory argument, the citation key from the bibliography.
 
-It is important to place the lawbooks in `build/bib/law.bib`.  
-Ensure that you define the bibliography file in the preamble of your `main.tex` document as follows:  
-`\addtocategory{law}{aktg1965, .....}`
+Ensure that law books are placed in `build/bib/law.bib`. Define the bibliography file in the preamble of your `main.tex` document as follows:
 
-### Use `\autocite` for citing
+```latex
+\addtocategory{law}{aktg1965, .....}
+```
 
-Example: `\autocite[pagenumber]{citation key}`
+### Citing with `\autocite`
 
-# Structure
+Example:
 
-Defining Sections and Subsections in the `main.tex` document. 
+```latex
+\autocite[pagenumber]{citation key}
+```
 
-Create a file in the `sections/` directory named `sectiontitle.tex`. The main structure should follow the format provided in `sample.tex`; refer to `introduction.tex` as an example. To include this file in your main document, use the command `\subfile{sections/introduction}` in your main document.
+## Structure
 
+### Defining Sections and Subsections
 
-Put your images in `images/`
+Create sections and subsections in the `main.tex` document.
 
-For Changes look into 'build/' 
+- Create a file in the `sections/` directory named `sectiontitle.tex`.
+- Follow the structure provided in `sample.tex`; refer to `introduction.tex` as an example.
+- Include this file in your main document using:
 
-If u need Attachments u need the attachment enviroment e.E.: 
-`\begin{attachment}[NameOfAttachment]
-	Write in Here
-\end{attachment}`
+  ```latex
+  \subfile{sections/introduction}
+  ```
 
+Place your images in the `images/` directory.
 
-### Used Packages
+For changes, look into the `build/` directory.
 
-# LaTeX Packages Used
+### Using Attachments
+
+If you need to add attachments in your LaTeX document, use the `attachment` environment. Below is an example:
+
+```latex
+\begin{attachment}[NameOfAttachment]
+    Write your content here.
+\end{attachment}
+```
+
+#### List in Attachments
+
+To include lists in the attachments:
+
+```latex
+\begin{attachment}[NameOfAttachment2]
+    \begin{customlistof}{0cm}{}
+        Write list here
+    \end{customlistof}
+\end{attachment}
+```
+
+## LaTeX Packages Used
 
 - `inputenc` (with utf8 encoding)
 - `babel` (with german option)
@@ -90,4 +124,3 @@ If u need Attachments u need the attachment enviroment e.E.:
 - Cleveref package is configured for German.
 - Bibliography settings are defined, with resources added using `\addbibresource`.
 - Page formatting and layout adjustments are made for better document appearance.
-
