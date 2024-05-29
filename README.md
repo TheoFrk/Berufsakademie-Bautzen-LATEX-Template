@@ -1,4 +1,3 @@
-
 # LaTeX Projektvorlage für BA Bautzen Wirtschaft
 
 Diese LaTeX-Projektvorlage entspricht den Richtlinien der BA Bautzen, speziell zugeschnitten für die Wirtschaftswissenschaften. Sie vereinfacht den Prozess der Erstellung professioneller und richtlinienkonformer Dokumente für akademische und berufliche Zwecke.
@@ -54,7 +53,7 @@ Beispiel:
 
 ```latex
 \autocite[Seitenzahl]{citation key}
-
+```
 
 ### Struktur
 
@@ -95,6 +94,19 @@ Um Listen in Anhängen einzufügen:
     \end{customlistof}
 \end{attachment}
 ```
+
+### Verwendung von Akronymen
+
+Akronyme werden in `build/acronyms` eingegeben. Allgemeiner Syntax:
+
+```latex
+\newacronym{ai}{AI}{Artificial Intelligence}
+```
+
+- `\newacronym{ai}{AI}{Artificial Intelligence}` definiert ein neues Akronym.
+- `{ai}` ist der Schlüssel, der innerhalb des Dokuments verwendet wird.
+- `{AI}` ist die Kurzform des Akronyms.
+- `{Artificial Intelligence}` ist die ausführliche Beschreibung.
 
 ### Verwendete LaTeX-Pakete
 
@@ -221,6 +233,19 @@ To include lists in the attachments:
 \end{attachment}
 ```
 
+### Using Acronyms
+
+Acronyms are entered in `build/acronyms`. General syntax:
+
+```latex
+\newacronym{ai}{AI}{Artificial Intelligence}
+```
+
+- `\newacronym{ai}{AI}{Artificial Intelligence}` defines a new acronym.
+- `{ai}` is the key used within the document.
+- `{AI}` is the short form of the acronym.
+- `{Artificial Intelligence}` is the full description.
+
 ### LaTeX Packages Used
 
 - `inputenc` (with utf8 encoding)
@@ -247,6 +272,8 @@ To include lists in the attachments:
 - `pdfpages`
 - `cleveref`
 - `lipsum`
+
+
 - `microtype` (with final option)
 - `caption`
 - `subfiles`
@@ -262,4 +289,4 @@ To include lists in the attachments:
 - Page formatting and layout adjustments are made for better document appearance.
 ```
 
-Diese Struktur ermöglicht es dem Leser, zwischen Deutsch und Englisch zu wählen, indem er auf die entsprechenden Links klickt. Beide Versionen des Textes sind vollständig im Dokument enthalten, sodass der Leser einfach zu der gewünschten Sprachversion navigieren kann.
+Dieses Dokument bietet nun eine vollständige Anleitung sowohl auf Deutsch als auch auf Englisch, einschließlich der Erklärung zur Verwendung von Akronymen.
