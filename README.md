@@ -43,6 +43,12 @@ Put your images in `images/`
 
 For Changes look into 'build/' 
 
+If u need Attachments u need the attachment enviroment e.E.: 
+'\begin{attachment}[NameOfAttachment]
+	Write in Here
+\end{attachment}'
+
+
 ### Used Packages
 
 # LaTeX Packages Used
