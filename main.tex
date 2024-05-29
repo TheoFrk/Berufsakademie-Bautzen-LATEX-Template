@@ -1,82 +1,77 @@
-\documentclass[12pt]{article}
-\usepackage{build/customizations}
-\usepackage{build/commands}
+\documentclass[12pt]{article} % Definiert die Dokumentenklasse als Artikel mit Schriftgröße 12pt
+\usepackage{build/customizations} % Lädt Anpassungen aus einer benutzerdefinierten Datei
+\usepackage{build/commands} % Lädt benutzerdefinierte Befehle aus einer Datei
 
 % Einstellungen (EDIT)
 \title{TITLE} % Titel des Dokuments
-\authorname{FIRSTNAME}{MIDDLENAME}{LASTNAME} % Lassen Sie den Mittelnamen leer, wenn Sie keinen haben
+\authorname{FIRSTNAME}{MIDDLENAME}{LASTNAME} % Autorname; den Mittelnamen leer lassen, wenn keiner vorhanden ist
 \date{12.07.2024} % Datum der Einreichung oder Veröffentlichung im Format TT.MM.JJJJ
-\def\semgroup{SEMGROUP} % Ihre Seminargruppe
-\def\matnum{matnum} % Ihre Matrikelnummer
-\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bautzen} % Name Ihrer Universität
+\def\semgroup{SEMGROUP} % Definiert die Seminargruppe
+\def\matnum{matnum} % Definiert die Matrikelnummer
+\def\pubUniversity{Bautzen, Berufsakademie Sachsen, Staatliche Studienakademie Bautzen} % Name der Universität
 \def\papertype{TypeOfPaper} % Art der Arbeit (z.B. Hausarbeit, Bachelorarbeit, etc.)
 \def\reviewer{ReviewerName, Reviewer Company?} % Name und Zugehörigkeit des Gutachters
 \def\location{Bautzen} % Ort der Unterschrift für die Unabhängigkeitserklärung
 
-
-
-
 \begin{document}
 
-\customtitlepage{build/images/logo.png}{0.1}
-\customauthorsabstract
-\par Your abstract here. % Abstract hier schreiben
-\thispagestyle{empty} % Seitenzahl für diese Seite entfernen
+\customtitlepage{build/images/logo.png}{0.1} % Erzeugt eine benutzerdefinierte Titelseite mit einem Logo (Größe 0.1)
+\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+\customauthorsabstract\par
+ Your abstract here. % Abstract hier einfügen
+
 
 \newpage 
 
-\tableofcontents % Inhaltsverzeichnis generieren
-\thispagestyle{empty}
+\tableofcontents % Generiert das Inhaltsverzeichnis
+\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
 \newpage
 
-\thispagestyle{empty}
-\listoftables
+\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+\listoftables % Generiert das Tabellenverzeichnis
 \newpage
 
-\thispagestyle{empty}
-\listoffigures
+\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+\listoffigures % Generiert das Abbildungsverzeichnis
 \newpage
 
-\section{Einleitung}
-\subfile{sections/introduction}
+\section{Einleitung} % Beginn des ersten Abschnitts
+\subfile{sections/introduction} % Fügt die Datei "introduction" aus dem Ordner "sections" ein
 
-\section{Hauptteil}
-\lipsum[2]
+\section{Hauptteil} % Beginn des Hauptteils
+\lipsum[2] % Beispieltext
 
-\section{Fazit}
-\lipsum[3]
-
-\newpage
-\printbibliography[notcategory=law, title={Quellenverzeichnis}]
-\addcontentsline{toc}{section}{Quellenverzeichnis}
+\section{Fazit} % Beginn des Fazits
+\lipsum[3] % Beispieltext
 
 \newpage
-\printbibliography[category=law, title={Rechtsquellenverzeichnis}]
-\addcontentsline{toc}{section}{Rechtsquellenverzeichnis}
+\printbibliography[notcategory=law, title={Quellenverzeichnis}] % Druckt das Quellenverzeichnis ohne die Kategorie "law"
+\addcontentsline{toc}{section}{Quellenverzeichnis} % Fügt das Quellenverzeichnis zum Inhaltsverzeichnis hinzu
+
+\newpage
+\printbibliography[category=law, title={Rechtsquellenverzeichnis}] % Druckt das Rechtsquellenverzeichnis
+\addcontentsline{toc}{section}{Rechtsquellenverzeichnis} % Fügt das Rechtsquellenverzeichnis zum Inhaltsverzeichnis hinzu
 
 \newpage
 
 %ListOfAttachments
-\listofattachments
+\listofattachments % Generiert das Anlagenverzeichnis
 
 \newpage
 
-% Example for Attachments
-\begin{attachment}[Anlage1]
-	\begin{customlistof}{0cm}{} 
-		\lipsum[4]
-	\end{customlistof}
+% Beispiel für Anlagen
+\begin{attachment}[Titel Anlage1] % Beginnt eine neue Anlage mit dem Titel "Anlage1"
+    \lipsum[4] % Beispieltext für Anlage 1
 \end{attachment}
 
-\begin{attachment}[Anlage2]
-	\begin{customlistof}{0cm}{} 
-		\lipsum[5]
-	\end{customlistof}
+\begin{attachment}[Titel Anlage2] % Beginnt eine neue Anlage mit dem Titel "Anlage2"
+    \begin{customlistof}{0cm}{} 
+        \lipsum[5] % Beispieltext für Anlage 2
+    \end{customlistof}
 \end{attachment}
 
+\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+\section*{Selbstständigkeitserklärung} % Fügt eine nicht nummerierte Sektion für die Selbstständigkeitserklärung hinzu
+\subfile{build/sections/declaration of independence} % Fügt die Datei "declaration of independence" aus dem Ordner "sections" ein
 
-\thispagestyle{empty}
-\section*{Selbstständigkeitserklärung}
-\subfile{build/sections/declaration of independence}
-
-\end{document}
+\end{document} % Ende des Dokuments

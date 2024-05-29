@@ -1,42 +1,50 @@
 % Standardpakete und Einstellungen
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[german]{babel}
-\RequirePackage{amsmath, amsfonts, amssymb, graphicx, xcolor, titling, listings, float, lastpage, setspace, csquotes, tikz, helvet}
-\RequirePackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm]{geometry}
-\RequirePackage[backend=biber, authordate, ibidtracker=context]{biblatex-chicago}
-\RequirePackage{fancyhdr}
-\RequirePackage{acronym}
-\RequirePackage{hyperref}
-\RequirePackage[titles]{tocloft}
-\RequirePackage{pdfpages}
-\RequirePackage{cleveref}
-\RequirePackage{lipsum}
-\RequirePackage[final]{microtype}
-\RequirePackage{caption}
-\RequirePackage{subfiles}
-
+\RequirePackage[utf8]{inputenc} % Kodierungseinstellung für UTF-8
+\RequirePackage[german]{babel} % Sprachpaket für Deutsch
+\RequirePackage{amsmath, amsfonts, amssymb} % AMS-Pakete für mathematische Symbole und Schriftarten
+\RequirePackage{graphicx} % Paket für Grafiken
+\RequirePackage{xcolor} % Paket für Farben
+\RequirePackage{titling} % Paket für Titelgestaltung
+\RequirePackage{listings} % Paket für Quellcode-Darstellung
+\RequirePackage{float} % Paket für Gleitobjekte
+\RequirePackage{lastpage} % Paket zum Ermitteln der letzten Seite
+\RequirePackage{setspace} % Paket für Zeilenabstände
+\RequirePackage{csquotes} % Paket für intelligente Anführungszeichen
+\RequirePackage{tikz} % Paket für Zeichnungen
+\RequirePackage{helvet} % Paket für Helvetica-Schriftart
+\RequirePackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm]{geometry} % Paket zur Seitengeometrie
+\RequirePackage[backend=biber, authordate, ibidtracker=context]{biblatex-chicago} % Paket für Literaturverzeichnis im Chicago-Stil
+\RequirePackage{fancyhdr} % Paket für Kopf- und Fußzeilen
+\RequirePackage{acronym} % Paket für Akronyme
+\RequirePackage{hyperref} % Paket für Hyperlinks
+\RequirePackage[titles]{tocloft} % Paket für Inhaltsverzeichnis
+\RequirePackage{pdfpages} % Paket zum Einbinden von PDF-Seiten
+\RequirePackage{cleveref} % Paket für intelligente Referenzen
+\RequirePackage{lipsum} % Paket für Blindtext
+\RequirePackage[final]{microtype} % Paket für Mikrotypografie
+\RequirePackage{caption} % Paket für Bild- und Tabellenunterschriften
+\RequirePackage{subfiles} % Paket für Unterdateien
 
 % Grafiken Pfade
-\graphicspath{{build/images/}{images/}}
+\graphicspath{{build/images/}{images/}} % Pfade zu den Grafikordnern
 
 % Konfiguration der Beschriftungen für Abbildungen und Tabellen
 \captionsetup[figure]{
-    labelfont=bf,            % Fett gedruckte Beschriftung
-    labelsep=period          % Trennzeichen ist ein Punkt
+    labelfont=bf, % Fett gedruckte Beschriftung
+    labelsep=period % Trennzeichen ist ein Punkt
 }
 \captionsetup[table]{
-    labelfont=bf,            % Fett gedruckte Beschriftung
-    labelsep=period          % Trennzeichen ist ein Punkt
+    labelfont=bf, % Fett gedruckte Beschriftung
+    labelsep=period % Trennzeichen ist ein Punkt
 }
-
 
 % Definitionen
 \def\authorname#1#2#3{%
-	\def\firstname{#1}%
-	\def\middlename{#2}%
-	\def\lastname{#3}%
-	\gdef\theauthor{#1\ #2\ #3} % Globale Definition für den Gebrauch in \author
-	\gdef\reversedauthor{#3, #1\ #2}
+    \def\firstname{#1}%
+    \def\middlename{#2}%
+    \def\lastname{#3}%
+    \gdef\theauthor{#1\ #2\ #3} % Globale Definition für den Gebrauch in \author
+    \gdef\reversedauthor{#3, #1\ #2}
 }
 
 % Cleveref auf Deutsch setzen
@@ -50,10 +58,11 @@
 % BibLaTeX Einstellungen
 \setlength{\bibitemsep}{1em} % Abstand zwischen den Literaturangaben
 \setlength{\bibhang}{2em} % Einzug nach jeweils erster Zeile
-\addbibresource{build/bib/law.bib}
+\addbibresource{build/bib/law.bib} % Einbindung der Literaturdateien
 \addbibresource{build/bib/references.bib}
 \addbibresource{build/bib/misc.bib}
 
+% Einstellungen für den Textsatz
 \tolerance 1414
 \hbadness 1414
 \emergencystretch 1.5em
@@ -62,11 +71,13 @@
 \vfuzz \hfuzz
 \raggedbottom
 
+% Definition von Bibliografie-Feldern
 \DeclareFieldFormat[article,book,inbook,incollection,inproceedings,misc,thesis,unpublished]{title}{#1}
 
+% Anpassung von BibLaTeX
 \renewbibmacro{in:}{%
-	\ifentrytype{article}{% Nur bei Artikeln
-		\printtext{\bibstring{in}\intitlepunct}}{}
+    \ifentrytype{article}{% Nur bei Artikeln
+        \printtext{\bibstring{in}\intitlepunct}}{}
 }
 
 \DeclareAutoCiteCommand{footnote}[f]{\cite}{\cite}
@@ -74,53 +85,43 @@
 \DeclareAutoCiteCommand{plain}[f]{\cite}{\cite}
 
 \DeclareBibliographyDriver{legal}{%
-	\printtext[labelname]{%
-		\printfield{title}%
-		\setunit{\addspace}%
-		\printfield{year}%
-		\setunit{\addspace}%
-		\printfield{number}%
-	}
+    \printtext[labelname]{%
+        \printfield{title}%
+        \setunit{\addspace}%
+        \printfield{year}%
+        \setunit{\addspace}%
+        \printfield{number}%
+    }
 }
 
 \newbibmacro*{cite:law}{%
-	\printnames{labelname}% Autor (Gesetz)
-	\setunit*{\addspace}% Leerzeichen
-	\printfield{postnote}% Paragraph
+    \printnames{labelname}% Autor (Gesetz)
+    \setunit*{\addspace}% Leerzeichen
+    \printfield{postnote}% Paragraph
 }
 
-% \DeclareBibliographyDriver{misc}{%
-% 	\usebibmacro{bibindex}%
-% 	\usebibmacro{begentry}%
-% 	\usebibmacro{author/editor+others/translator+others}%
-% 	\setunit{\printdelim{nametitledelim}}\newblock \usebibmacro{title}%
-% 	\setunit{\space}\newblock \printfield{journaltitle}%
-% 	\setunit*{\addspace}\newblock \printfield{volume}%
-% 	\setunit*{\addcomma\space}\newblock \printfield{pages}%
-% 	\setunit{\addcomma\space}\newblock \printfield{note}%
-% 	\usebibmacro{finentry}}
-
 \DeclareBibliographyDriver{misc}{%
-	\usebibmacro{bibindex}%
-	\usebibmacro{begentry}%
-	\usebibmacro{author/editor+others/translator+others}%
-	\setunit{\printdelim{nametitledelim}}\newblock
-	\usebibmacro{title}%
-	\setunit{\space}\newblock
-	\printfield{journaltitle}%
-	\setunit*{\addspace}\newblock
-	\printfield{volume}%
-	\setunit*{\addcomma\space}\newblock
-	\printfield{pages}%
-	\setunit{\addcomma\space}\newblock
-	\printfield{note}%
-	\setunit{\addcomma\space}\newblock
-	\printfield{url}%
-	\usebibmacro{finentry}}
+    \usebibmacro{bibindex}%
+    \usebibmacro{begentry}%
+    \usebibmacro{author/editor+others/translator+others}%
+    \setunit{\printdelim{nametitledelim}}\newblock
+    \usebibmacro{title}%
+    \setunit{\space}\newblock
+    \printfield{journaltitle}%
+    \setunit*{\addspace}\newblock
+    \printfield{volume}%
+    \setunit*{\addcomma\space}\newblock
+    \printfield{pages}%
+    \setunit{\addcomma\space}\newblock
+    \printfield{note}%
+    \setunit{\addcomma\space}\newblock
+    \printfield{url}%
+    \usebibmacro{finentry}
+}
 
 % Zeilenabstand und Einrückung
-\linespread{1.5}
-\setlength{\parindent}{0em}
+\linespread{1.5} % Zeilenabstand auf 1,5-fach setzen
+\setlength{\parindent}{0em} % Keine Einrückung bei neuen Absätzen
 
 % Seitenformatierung
 \pagestyle{fancy}
@@ -130,11 +131,8 @@
 
 % Setzen Sie die Kopfzeilenhöhe auf den empfohlenen Wert
 \setlength{\headheight}{14.5pt}
-
 % Passen Sie den oberen Seitenrand an, um die Änderung auszugleichen
 \addtolength{\topmargin}{-2.5pt}
-
-
 
 % Verzeichnisformatierung für Abbildungen
 \renewcommand{\cftdot}{}
@@ -150,10 +148,10 @@
 \setlength{\cfttabnumwidth}{6em}
 
 % Glossaries
-\RequirePackage{glossaries}
-\newglossary[slg]{acronyms}{syi}{syo}{Symbol List}
-\loadglsentries{build/acronyms/acronyms.tex}
-\makeglossaries
+\RequirePackage{glossaries} % Paket für Glossare
+\newglossary[slg]{acronyms}{syi}{syo}{Symbol List} % Neuer Glossar-Typ für Akronyme
+\loadglsentries{build/acronyms/acronyms.tex} % Laden der Akronyme aus einer Datei
+\makeglossaries % Erstellen der Glossare
 
 %--ANHANG Generierung
 
@@ -163,7 +161,7 @@
 
 % Umgebung für Anlagenverzeichnis
 \newenvironment{customlistofattachment}[2]{%
-    \begin{itemize}[leftmargin=#1,labelsep=0.5cm,itemindent=-0.5cm,labelwidth=\dimexpr\linewidth-#1\relax,parsep=0pt
+    \begin{itemize}[leftmargin=#1,labelsep=0.5cm,itemindent=-0.5cm,labelwidth=\dimexpr\linewidth-#1\relax,parsep=0pt]
 }{%
     \end{itemize}
 }
@@ -207,23 +205,4 @@
     \fancyfoot[C]{\thepage} % Fügt die Seitenzahl im Footer hinzu
 }
 
-% Anlagenverzeichnis
-\makeatletter
-\newcommand{\listofattachments}{%
-    \pagenumbering{gobble}
-    \begingroup
-    \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % Keine Punkte
-    \setlength{\cftsecnumwidth}{3em}
-    \setlength{\cftsecindent}{0em}
-    \section*{Anlagenverzeichnis}
-    \addcontentsline{toc}{section}{Anlagenverzeichnis}
-    \@starttoc{att}
-    \endgroup
-}
-
-
-
-\newcommand{\attachmenttoc}[1]{%
-    \addcontentsline{att}{section}{Anlage \theattachment: #1}
-}
 
