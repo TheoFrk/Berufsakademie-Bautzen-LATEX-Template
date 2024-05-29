@@ -288,5 +288,3 @@ Acronyms are entered in `build/acronyms`. General syntax:
 - Bibliography settings are defined, with resources added using `\addbibresource`.
 - Page formatting and layout adjustments are made for better document appearance.
 ```
-
-Dieses Dokument bietet nun eine vollständige Anleitung sowohl auf Deutsch als auch auf Englisch, einschließlich der Erklärung zur Verwendung von Akronymen.
