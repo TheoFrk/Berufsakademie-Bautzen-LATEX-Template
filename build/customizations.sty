@@ -16,13 +16,20 @@
 \RequirePackage[backend=biber, authordate, ibidtracker=context]{biblatex-chicago} % Paket für Literaturverzeichnis im Chicago-Stil
 \RequirePackage{fancyhdr} % Paket für Kopf- und Fußzeilen
 \RequirePackage{acronym} % Paket für Akronyme
-\RequirePackage{hyperref} % Paket für Hyperlinks
+\RequirePackage[pdftex,
+            pdfauthor={},
+            pdftitle={},
+            pdfsubject={},
+            pdfkeywords={},
+            pdfproducer={LaTeX mit hyperref},
+            pdfcreator={pdflatex}]{hyperref} % Paket für Hyperlinks und Meta-Daten
 \RequirePackage[titles]{tocloft} % Paket für Inhaltsverzeichnis
 \RequirePackage{pdfpages} % Paket zum Einbinden von PDF-Seiten
 \RequirePackage{cleveref} % Paket für intelligente Referenzen
 \RequirePackage{lipsum} % Paket für Blindtext
 \RequirePackage[final]{microtype} % Paket für Mikrotypografie
 \RequirePackage{caption} % Paket für Bild- und Tabellenunterschriften
+\RequirePackage{etoolbox} % Für if-else Statements
 \RequirePackage{subfiles} % Paket für Unterdateien
 
 % Grafiken Pfade
@@ -100,6 +107,8 @@
     \printfield{postnote}% Paragraph
 }
 
+
+
 \DeclareBibliographyDriver{misc}{%
     \usebibmacro{bibindex}%
     \usebibmacro{begentry}%
@@ -148,10 +157,9 @@
 \setlength{\cfttabnumwidth}{6em}
 
 % Glossaries
-\RequirePackage{glossaries} % Paket für Glossare
-\newglossary[slg]{acronyms}{syi}{syo}{Symbol List} % Neuer Glossar-Typ für Akronyme
+\RequirePackage[acronym]{glossaries} % Paket für Glossare
 \loadglsentries{build/acronyms/acronyms.tex} % Laden der Akronyme aus einer Datei
-\makeglossaries % Erstellen der Glossare
+\makeglossaries  % Erstellen der Glossare
 
 %--ANHANG Generierung
 

@@ -3,11 +3,14 @@
 
 \begin{document}
 
+% Einleitung Abschnitt
 \section{Einleitung}
 
-\textbf{Hello world!} % Beispiel für fettgedruckten Text
+% Textbeispiele für verschiedene Textstile
+\textbf{Hello Bold world!} % Fettgedruckter Text
+\textit{Hello Italic World!} % Kursiver Text
 
-% Beispiel für eine Abbildung
+% Abbildung einfügen
 \begin{figure}[h]
     \centering
     \includegraphics[width=3cm]{images/picsum lorem.jpg} % Pfad zur Abbildung
@@ -15,27 +18,35 @@
     \label{fig:picsum_lorem} % Label für die Abbildung
 \end{figure}
 
-Lorem Ipsum bla\autocite[10]{smith2018} bla bla. As stated by bla bla bla. % Beispiel für eine Zitierung
+% Zitieren aus einem Text
+Hier zitiere ich aus dem Text \autocite[10]{smith2018}. und schreibe dann weiter.\par % Beispiel für eine Zitierung
 
-Hier benutzen wir abkürzungen wir \gls{ml} und \gls{ai}.\\ % Beispiel für die Verwendung von Abkürzungen
-Außerdem ist es jetzt hier \gls{ml} abgekürzt
-Acronyme werden unter build/acronyms eingegeben
+% % Verwendung von Abkürzungen
+Hier benutzen wir Abkürzungen wie \gls{ml} und \gls{ai}.\\ % Beispiel für die Verwendung von Abkürzungen
+Außerdem ist es jetzt hier \gls{ml} abgekürzt.\par % Wiederholte Verwendung der Abkürzung
 
+% Acronyme werden in der Datei build/acronyms definiert
+
+% Gesetzeszitat
 Ein Beispieltext mit einem Gesetzeszitat \lawcite[§ 164 Absatz 1 Satz 1]{aktg1965}. % Beispiel für ein Gesetzeszitat
 
-Test Test \autocite[15-27]{johnson2020} % Weitere Zitierung
+% Mehrere Seiten Zitierung
+Hier ein zweites Zitat über mehrere Seiten \autocite[15-27]{johnson2020}. % Weitere Zitierung
 
 \medskip
 
-% Beispiel für eine Tabelle
+% Tabelle einfügen
 \begin{table}[h]
     \centering
     \begin{tabular}{cc}
-        Test & Test2\\
-        Test3 & Test4\\
+        Element1 & Element2\\
+        Element3 & Element4\\
     \end{tabular}
     \caption{Beispiel-Tabelle} % Beschriftung der Tabelle
     \label{tab:example_table} % Label für die Tabelle
 \end{table}
+
+% Verweise auf Tabelle und Abbildung
+In diesem Text referenziere ich auf die  \cref{tab:example_table} und danach auf das Bild \cref{fig:picsum_lorem}.
 
 \end{document}
