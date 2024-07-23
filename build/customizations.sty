@@ -1,6 +1,6 @@
 % Standardpakete und Einstellungen
 \RequirePackage[utf8]{inputenc} % Kodierungseinstellung für UTF-8
-\RequirePackage[german]{babel} % Sprachpaket für Deutsch
+\RequirePackage[ngerman]{babel} % Sprachpaket für Deutsch
 \RequirePackage{amsmath, amsfonts, amssymb} % AMS-Pakete für mathematische Symbole und Schriftarten
 \RequirePackage{graphicx} % Paket für Grafiken
 \RequirePackage{xcolor} % Paket für Farben
@@ -13,10 +13,10 @@
 \RequirePackage{tikz} % Paket für Zeichnungen
 \RequirePackage{helvet} % Paket für Helvetica-Schriftart
 \RequirePackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm]{geometry} % Paket zur Seitengeometrie
-\RequirePackage[backend=biber, authordate, ibidtracker=context]{biblatex-chicago} % Paket für Literaturverzeichnis im Chicago-Stil
+\RequirePackage[backend=biber, authordate, ibidtracker=context, maxcitenames=1]{biblatex-chicago} % Paket für Literaturverzeichnis im Chicago-Stil
 \RequirePackage{fancyhdr} % Paket für Kopf- und Fußzeilen
 \RequirePackage{acronym} % Paket für Akronyme
-\RequirePackage[pdftex,
+\RequirePackage[hidelinks, pdftex,
             pdfauthor={},
             pdftitle={},
             pdfsubject={},
@@ -68,6 +68,11 @@
 \addbibresource{build/bib/law.bib} % Einbindung der Literaturdateien
 \addbibresource{build/bib/references.bib}
 \addbibresource{build/bib/misc.bib}
+
+%et al einfügen
+\DefineBibliographyStrings{ngerman}{
+  andothers = {et al.},
+}
 
 % Einstellungen für den Textsatz
 \tolerance 1414
