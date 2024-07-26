@@ -8,7 +8,6 @@
             % Platzierung der Titelinformationen auf der Seite
              \node at ([xshift=2cm,yshift=10.6cm] current page.center) {\raggedright Studiengang};
              \node at ([xshift=4.05cm,yshift=10.07cm] current page.center) {\raggedright Betriebliches Ressourcenmangment};
-            %\node at ([xshift=0.2cm,yshift=6.68cm] current page.center) {\centering \textbf{\thetitle}};
             \node at ([xshift=0.2cm,yshift=6.68cm] current page.center) {\parbox[c]{0.8\textwidth}{\centering\textbf{\thetitle}}};
             \node at ([xshift=0.188cm,yshift=2.36cm] current page.center) {\centering \papertype};
             \node at ([xshift=0.2cm,yshift=-0.895cm] current page.center) {\centering eingereicht von};
@@ -83,4 +82,27 @@
 % Fügt eine Anlage zum Anlagenverzeichnis hinzu
 \newcommand{\attachmenttoc}[1]{%
     \addcontentsline{att}{section}{Anlage \theattachment: #1}
+}
+
+%TODO
+% Option zum Deaktivieren von ToDos
+\newif\ifshowTodos
+\showTodostrue % Standard: ToDos anzeigen
+
+% Befehl zum Deaktivieren von ToDos
+\newcommand{\hideTodos}{%
+  \showTodosfalse
+  \renewcommand{\todo}[2][]{}%
+  \renewcommand{\missingfigure}[2][]{}%
+  \renewcommand{\listoftodos}[1][]{}%
+}
+% Neu definierte TODO-Typen
+\newcommand{\idea}[1]{\todo[color=ideatodocolor!40]{\textbf{Idee:} #1}}
+\newcommand{\critical}[1]{\todo[color=criticalcolor!40]{\textbf{Kritisch:} #1}}
+
+% TODO-Liste im Dokument anzeigen
+\newcommand{\printtodos}{%
+  \ifshowTodos
+    \listoftodos[TODO-Liste]%
+  \fi
 }

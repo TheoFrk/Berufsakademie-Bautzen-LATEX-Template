@@ -1,4 +1,4 @@
-\documentclass[12pt]{article} % Definiert die Dokumentenklasse als Artikel mit Schriftgröße 12pt
+\documentclass[ngerman, 12pt]{article} % Definiert die Dokumentenklasse als Artikel mit Schriftgröße 12pt
 \usepackage{build/customizations} % Lädt Anpassungen aus einer benutzerdefinierten Datei
 \usepackage{build/commands} % Lädt benutzerdefinierte Befehle aus einer Datei
 
@@ -15,6 +15,9 @@
 \def\location{Bautzen} % Ort der Unterschrift für die Unabhängigkeitserklärung
 
 \begin{document}
+
+%\hideTodos
+
 \customtitlepage{build/images/logo.png}{0.1} % Erzeugt eine benutzerdefinierte Titelseite mit einem Logo (Größe 0.1)
 \thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
 
@@ -45,6 +48,7 @@
 \listoffigures % Generiert das Abbildungsverzeichnis
 \newpage
 
+\thispagestyle{empty}
 \section{Einleitung} % Beginn des ersten Abschnitts
 \subfile{sections/introduction} % Fügt die Datei "introduction" aus dem Ordner "sections" ein
 
