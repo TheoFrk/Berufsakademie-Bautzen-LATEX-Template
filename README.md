@@ -108,6 +108,38 @@ Akronyme werden in `build/acronyms` eingegeben. Allgemeiner Syntax:
 - `{AI}` ist die Kurzform des Akronyms.
 - `{Artificial Intelligence}` ist die ausführliche Beschreibung.
 
+### Verwendung der TODO-Funktionalität
+
+Diese Vorlage bietet eine erweiterte TODO-Funktionalität zur besseren Strukturierung und Verwaltung von Aufgaben innerhalb Ihres Dokuments.
+
+#### Verfügbare TODO-Typen
+
+1. Allgemeine TODOs: `\todo{Aufgabenbeschreibung}`
+2. Ideen: `\idea{Ideenbeschreibung}`
+3. Kritische Aufgaben: `\critical{Beschreibung der kritischen Aufgabe}`
+
+#### TODO-Listen erstellen
+
+Sie können strukturierte TODO-Listen mit der `todolist`-Umgebung erstellen:
+
+```latex
+\begin{todolist}
+  \item \todo{Erste Aufgabe}
+  \item \idea{Zweite Aufgabe (Idee)}
+  \item \critical{Dritte Aufgabe (Kritisch)}
+\end{todolist}
+```
+
+#### Anzeigen aller TODOs
+
+Um alle TODOs an einer bestimmten Stelle im Dokument anzuzeigen, verwenden Sie den Befehl:
+
+```latex
+\printtodos
+```
+
+Diese Funktion ist besonders nützlich, um am Ende des Dokuments oder in einem separaten Abschnitt eine Übersicht aller offenen Aufgaben zu erhalten.
+
 ### Verwendete LaTeX-Pakete
 
 - `inputenc` (mit UTF-8 Kodierung)
@@ -246,6 +278,38 @@ Acronyms are entered in `build/acronyms`. General syntax:
 - `{AI}` is the short form of the acronym.
 - `{Artificial Intelligence}` is the full description.
 
+### Using the TODO Functionality
+
+This template provides an enhanced TODO functionality for better structuring and managing tasks within your document.
+
+#### Available TODO Types
+
+1. General TODOs: `\todo{Task description}`
+2. Ideas: `\idea{Idea description}`
+3. Critical Tasks: `\critical{Critical task description}`
+
+#### Creating TODO Lists
+
+You can create structured TODO lists using the `todolist` environment:
+
+```latex
+\begin{todolist}
+  \item \todo{First task}
+  \item \idea{Second task (idea)}
+  \item \critical{Third task (critical)}
+\end{todolist}
+```
+
+#### Displaying All TODOs
+
+To display all TODOs at a specific point in the document, use the command:
+
+```latex
+\printtodos
+```
+
+This feature is particularly useful for getting an overview of all open tasks at the end of the document or in a separate section.
+
 ### LaTeX Packages Used
 
 - `inputenc` (with utf8 encoding)
@@ -272,8 +336,6 @@ Acronyms are entered in `build/acronyms`. General syntax:
 - `pdfpages`
 - `cleveref`
 - `lipsum`
-
-
 - `microtype` (with final option)
 - `caption`
 - `subfiles`
@@ -287,4 +349,3 @@ Acronyms are entered in `build/acronyms`. General syntax:
 - Cleveref package is configured for German.
 - Bibliography settings are defined, with resources added using `\addbibresource`.
 - Page formatting and layout adjustments are made for better document appearance.
-```

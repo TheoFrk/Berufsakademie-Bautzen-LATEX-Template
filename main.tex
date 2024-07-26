@@ -14,11 +14,12 @@
 \def\reviewer{ReviewerName, Reviewer Company?} % Name und Zugehörigkeit des Gutachters
 \def\location{Bautzen} % Ort der Unterschrift für die Unabhängigkeitserklärung
 
-
 \begin{document}
-
 \customtitlepage{build/images/logo.png}{0.1} % Erzeugt eine benutzerdefinierte Titelseite mit einem Logo (Größe 0.1)
 \thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+
+\critical{Metadaten und Präambel anpassen}
+
 \customauthorsabstract\par
  Your abstract here. % Abstract hier einfügen
 
@@ -88,5 +89,8 @@
 \thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
 \section*{Selbstständigkeitserklärung} % Fügt eine nicht nummerierte Sektion für die Selbstständigkeitserklärung hinzu
 \subfile{build/sections/declaration of independence} % Fügt die Datei "declaration of independence" aus dem Ordner "sections" ein
+
+\newpage \todo{TODO Liste entfernen}
+\listoftodos
 
 \end{document} % Ende des Dokuments

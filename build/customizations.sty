@@ -7,7 +7,7 @@
 \RequirePackage{titling} % Paket für Titelgestaltung
 \RequirePackage{listings} % Paket für Quellcode-Darstellung
 \RequirePackage{float} % Paket für Gleitobjekte
-\RequirePackage{lastpage} % Paket zum Ermitteln der letzten Seite
+\RequirePackage{totpages} % Paket zum Ermitteln der letzten Seite
 \RequirePackage{setspace} % Paket für Zeilenabstände
 \RequirePackage{csquotes} % Paket für intelligente Anführungszeichen
 \RequirePackage{tikz} % Paket für Zeichnungen
@@ -30,10 +30,35 @@
 \RequirePackage[final]{microtype} % Paket für Mikrotypografie
 \RequirePackage{caption} % Paket für Bild- und Tabellenunterschriften
 \RequirePackage{etoolbox} % Für if-else Statements
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=small]{todonotes}
 \RequirePackage{subfiles} % Paket für Unterdateien
 
 % Grafiken Pfade
 \graphicspath{{build/images/}{images/}} % Pfade zu den Grafikordnern
+
+%TODO
+% Anpassen der todo-Notizen an die Geometrie
+\setlength{\marginparwidth}{30mm}
+\reversemarginpar
+
+% Farben für verschiedene TODO-Typen definieren
+\definecolor{todocolor}{RGB}{255,141,0}  % Orange für allgemeine TODOs
+\definecolor{ideatodocolor}{RGB}{0,173,239}  % Hellblau für Ideen
+\definecolor{criticalcolor}{RGB}{255,0,0}  % Rot für kritische Aufgaben
+
+% Neue TODO-Typen definieren
+\newcommand{\idea}[1]{\todo[color=ideatodocolor!40]{\textbf{Idee:} #1}}
+\newcommand{\critical}[1]{\todo[color=criticalcolor!40]{\textbf{Kritisch:} #1}}
+
+% TODO-Liste-Umgebung
+\newenvironment{todolist}
+  {\begin{itemize}[leftmargin=*]}
+  {\end{itemize}}
+
+% TODO-Liste im Dokument anzeigen
+\newcommand{\printtodos}{
+  \listoftodos[TODO-Liste]
+}
 
 % Konfiguration der Beschriftungen für Abbildungen und Tabellen
 \captionsetup[figure]{
