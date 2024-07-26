@@ -140,6 +140,15 @@ Um alle TODOs an einer bestimmten Stelle im Dokument anzuzeigen, verwenden Sie d
 
 Diese Funktion ist besonders nützlich, um am Ende des Dokuments oder in einem separaten Abschnitt eine Übersicht aller offenen Aufgaben zu erhalten.
 
+#### TODOs deaktivieren
+Um alle TODOS sofort zu deaktivieren inkl. dem \printtodos, verwenden Sie den Befehl:
+
+```latex
+\hideTodos
+```
+
+Am Anfang des Bodys im Dokuments
+
 ### Verwendete LaTeX-Pakete
 
 - `inputenc` (mit UTF-8 Kodierung)
