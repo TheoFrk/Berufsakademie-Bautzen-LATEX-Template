@@ -129,7 +129,14 @@ Sie können strukturierte TODO-Listen mit der `todolist`-Umgebung erstellen:
   \item \critical{Dritte Aufgabe (Kritisch)}
 \end{todolist}
 ```
-
+#### Defintionen
+Um Defintionen zu schreiben nutze dies
+```latex
+\begin{definition}
+Let \(f\) be a function whose derivative exists in every point, then \(f\) is 
+a continuous function.
+\end{definition}
+```
 #### Anzeigen aller TODOs
 
 Um alle TODOs an einer bestimmten Stelle im Dokument anzuzeigen, verwenden Sie den Befehl:

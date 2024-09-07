@@ -17,9 +17,9 @@
 \begin{document}
 
 %\hideTodos
-
+\pagestyle{empty}
 \customtitlepage{build/images/logo.png}{0.1} % Erzeugt eine benutzerdefinierte Titelseite mit einem Logo (Größe 0.1)
-\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+
 
 \critical{Metadaten und Präambel anpassen}
 
@@ -30,24 +30,23 @@
 \newpage 
 
 \tableofcontents % Generiert das Inhaltsverzeichnis
-\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
 \newpage
 
 %Entfenen wenn nicht benutzt!
 \printglossary[type=\acronymtype, title=Abkürzungsverzeichnis]
-\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
 \newpage
 
-\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+
 \addcontentsline{toc}{section}{Tabellenverzeichnis}
 \listoftables % Generiert das Tabellenverzeichnis
 \newpage
 
-\thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
+
 \addcontentsline{toc}{section}{Abbildungsverzeichnis}
 \listoffigures % Generiert das Abbildungsverzeichnis
 \newpage
 
+\pagestyle{fancy}
 \thispagestyle{empty}
 \section{Einleitung} % Beginn des ersten Abschnitts
 \subfile{sections/introduction} % Fügt die Datei "introduction" aus dem Ordner "sections" ein
@@ -86,7 +85,10 @@
 
 \begin{attachment}[Titel Anlage2] % Beginnt eine neue Anlage mit dem Titel "Anlage2"
     \begin{customlistof}{0cm}{} %formatiert listen wie listoffigures/listoftables wie in den richtlinien
-        \lipsum[5] % Beispieltext für Anlage 2
+        \begin{itemize}
+            \item \lipsum[2] % Beispieltext für Anlage 2
+            \item \lipsum[2] % Beispieltext für Anlage 2
+        \end{itemize}
     \end{customlistof}
 \end{attachment}
 
