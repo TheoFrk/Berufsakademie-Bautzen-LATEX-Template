@@ -6,7 +6,7 @@
   \GenericWarning{%
     (Custom Warning)\@spaces\@spaces\@spaces\@spaces
   }{%
-    Package customwarning Warning: #1%
+      Package customwarning Warning: #1%
   }%
 }
 \makeatother
@@ -109,13 +109,14 @@
 \newcommand{\idea}[1]{\todo[color=ideatodocolor!40]{\textbf{Idee:} #1}}
 \newcommand{\critical}[1]{\todo[color=criticalcolor!40]{\textbf{Kritisch:} #1}}
 
+
 % TODO-Liste im Dokument anzeigen
 \newcommand{\printtodos}{%
   \ifshowTodos
-    \listoftodos[TODO-Liste]%
+    \listoftodos[TODO-Liste]
   \fi
 }
 
-\ifshowTodos
-    \customwarning{TODOs sind sichtbar, verwende \string\hideTodos \space in der main.tex um diese auszublenden}
-  \fi
+% \ifshowTodos
+%     \customwarning{TODOs sind sichtbar, verwende \string\hideTodos \space in der main.tex um diese auszublenden}
+%   \fi
