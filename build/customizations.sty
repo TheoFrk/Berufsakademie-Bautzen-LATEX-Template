@@ -9,7 +9,12 @@
 \RequirePackage{float} % Paket für Gleitobjekte
 \RequirePackage{totpages} % Paket zum Ermitteln der letzten Seite
 \RequirePackage{setspace} % Paket für Zeilenabstände
-\RequirePackage[german=guillemets]{csquotes} % Paket für intelligente Anführungszeichen
+\RequirePackage[
+  german = quotes,
+  autostyle = true,
+  autopunct,
+  csdisplay = true,
+]{csquotes}
 \RequirePackage{tikz} % Paket für Zeichnungen
 \RequirePackage{helvet} % Paket für Helvetica-Schriftart
 \RequirePackage[a4paper, left=40mm, right=20mm, top=20mm, bottom=20mm]{geometry} % Paket zur Seitengeometrie
