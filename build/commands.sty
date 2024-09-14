@@ -1,5 +1,16 @@
 \usepackage{customizations} % Verwendung der benutzerdefinierten Anpassungen
 
+% Definition einer benutzerdefinierten Warnmeldung
+\makeatletter 
+\newcommand{\customwarning}[1]{%
+  \GenericWarning{%
+    (Custom Warning)\@spaces\@spaces\@spaces\@spaces
+  }{%
+    Package customwarning Warning: #1%
+  }%
+}
+\makeatother
+
 % Erzeugt eine benutzerdefinierte Titelseite
 \newcommand{\customtitlepage}[2]{ % #1: Logo, #2: Skalierung
     \begin{titlepage}
@@ -57,13 +68,11 @@
 \setlength{\parskip}{1mm} % Setzt den Abstand zwischen Absätzen auf 1mm
 \setlength{\parindent}{0pt} % Entfernt die Einrückung der ersten Zeile im Absatz
 
-
 % Definition für Gesetzeszitate mit Flag-Setzung
 \newcommand{\lawcite}[2][]{%
     (#1 \citetitle{#2})%
     \nocite{#2}
 }
-
 
 % Erzeugt das Anlagenverzeichnis
 \makeatletter
@@ -84,7 +93,7 @@
     \addcontentsline{att}{section}{Anlage \theattachment: #1}
 }
 
-%TODO
+% TODO-Funktionalität
 % Option zum Deaktivieren von ToDos
 \newif\ifshowTodos
 \showTodostrue % Standard: ToDos anzeigen
@@ -106,3 +115,7 @@
     \listoftodos[TODO-Liste]%
   \fi
 }
+
+\ifshowTodos
+    \customwarning{TODOs sind sichtbar, verwende \string\hideTodos \space in der main.tex um diese auszublenden}
+  \fi
