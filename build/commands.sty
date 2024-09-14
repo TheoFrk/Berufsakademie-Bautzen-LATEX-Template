@@ -48,22 +48,24 @@
 }
 
 % Definition für Zitierstil mit Autor, Jahr und Seitenzahl
-\newbibmacro*{cite:authoryear+page}{%
-    \printnames{labelname} % Autor
-    %\setunit*{\addcomma\space} % Komma und Leerzeichen
-    \printfield{year} % Jahr
-    \setunit*{\addcomma\space} % Komma und Leerzeichen
-    \printfield{postnote} % Seitenzahl (Fundstelle)
+\newbibmacro{cite:authoryear+page}{%
+  \printnames{labelname}%
+  \setunit{\addcomma\space}%
+  \printfield{year}%
+  \iffieldundef{postnote}{}{%
+    \setunit{\addcomma\space}%
+    \printfield{postnote}%
+  }%
 }
 
 % Anpassung des Zitierbefehls für automatische Zitate
 \DeclareCiteCommand{\autocite}
-    {\booltrue{cbx:parens}} % Klammern aktivieren
-    {\usebibmacro{citeindex}%
-    \printtext[bibhyperref]{%
-        (\usebibmacro{cite:authoryear+page})}} % Klammern um das gesamte Zitat
-    {\multicitedelim}
-    {}
+  {\booltrue{cbx:parens}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{%
+     \mkbibparens{\usebibmacro{cite:authoryear+page}}}}
+  {\multicitedelim}
+  {}
 
 \setlength{\parskip}{1mm} % Setzt den Abstand zwischen Absätzen auf 1mm
 \setlength{\parindent}{0pt} % Entfernt die Einrückung der ersten Zeile im Absatz
