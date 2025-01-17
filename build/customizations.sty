@@ -73,8 +73,8 @@
     \def\firstname{#1}%
     \def\middlename{#2}%
     \def\lastname{#3}%
-    \gdef\theauthor{#1\ #2\ #3} % Globale Definition für den Gebrauch in \author
-    \gdef\reversedauthor{#3, #1\ #2}
+    \gdef\theauthor{\firstname\ifx\middlename\empty\else\ \middlename\fi\ \lastname}
+    \gdef\reversedauthor{\lastname, \firstname\ifx\middlename\empty\else\ \middlename\fi}
 }
 
 % Cleveref auf Deutsch setzen
