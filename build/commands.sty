@@ -41,10 +41,11 @@
     \section*{Autorenreferat}
     \reversedauthor:
     \newline
-    \thetitle{\ -} \the\year{} - \ref{TotPages} Bl.
+    \thetitle{} - \the\year{} - \ref{TotPages} Bl.
     \newline
     \pubUniversity, \papertype, \the\year{}
-    \newline
+    \newline\newline
+    % Abstract text here
 }
 
 % Definition für Zitierstil mit Autor, Jahr und Seitenzahl
@@ -193,27 +194,27 @@
 }
 
 % ==============================================
-% BENUTZER-BEFEHLE (automatisch sammelnd)
+% AI Commands
 % ==============================================
 
-% Fußnoten-KI-Kennzeichnung (sammelt automatisch)
-\newcommand{\aikennzeichnung}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% Footnote AI marking (automatically collects)
+\newcommand{\aifootnote}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Fußnoten-Kennzeichnung}{#1}{#2}{#3}%
         \footnote{Dieser Textabschnitt wurde mit Hilfe von #1 erstellt. Prompt: „#2". Datum der Nutzung: #3}
     \fi
 }
 
-% Inline-KI-Kennzeichnung (sammelt automatisch)
-\newcommand{\aiabschnitt}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% Inline AI marking (automatically collects)
+\newcommand{\aisection}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Inline-Kennzeichnung}{#1}{#2}{#3}%
         \textit{[Dieser Abschnitt wurde mit Hilfe von #1 erstellt. Siehe KI-Details Anlage.]}
     \fi
 }
 
-% Ganzer Absatz mit KI erstellt (sammelt automatisch)
-\newcommand{\aiabsatz}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% Entire paragraph created with AI (automatically collects)
+\newcommand{\aiparagraph}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Vollständiger Absatz}{#1}{#2}{#3}%
         \textit{[Der folgende Absatz wurde vollständig mit #1 erstellt. Siehe KI-Details Anlage.]}
@@ -221,39 +222,39 @@
     \fi
 }
 
-% Tabelle/Abbildung mit KI erstellt (sammelt automatisch)
-\newcommand{\aitabelle}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% Table/Figure created with AI (automatically collects)
+\newcommand{\aitable}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Tabelle/Abbildung}{#1}{#2}{#3}%
         \textit{Erstellt mit Hilfe von #1. Details siehe KI-Anlage.}
     \fi
 }
 
-% Für Code-Generierung
-\newcommand{\aicode}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% For code generation
+\newcommand{\aicode}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Code-Generierung}{#1}{#2}{#3}%
         \textit{[Code generiert mit #1]}
     \fi
 }
 
-% Für Übersetzungen
-\newcommand{\aiuebersetzung}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% For translations
+\newcommand{\aitranslation}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Übersetzung}{#1}{#2}{#3}%
         \textit{[Übersetzt mit #1]}
     \fi
 }
 
-% Für Zusammenfassungen
-\newcommand{\aizusammenfassung}[3]{% #1=Tool, #2=Prompt, #3=Datum
+% For summaries
+\newcommand{\aisummary}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Zusammenfassung}{#1}{#2}{#3}%
         \textit{[Zusammengefasst mit #1]}
     \fi
 }
 
-% Warnung wenn KI aktiviert ist
+% Warning when AI is activated
 \ifuseAI
     \customwarning{KI-Funktionen sind aktiviert. Alle KI-Verwendungen werden automatisch gesammelt.}
 \fi
