@@ -194,10 +194,10 @@
 }
 
 % ==============================================
-% AI Commands
+% AI Commands & Environments
 % ==============================================
 
-% Footnote AI marking (automatically collects)
+% Footnote AI marking (Command - bleibt wie es ist)
 \newcommand{\aifootnote}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Fußnoten-Kennzeichnung}{#1}{#2}{#3}%
@@ -205,7 +205,7 @@
     \fi
 }
 
-% Inline AI marking (automatically collects)
+% Inline AI marking (Command - bleibt wie es ist)
 \newcommand{\aisection}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Inline-Kennzeichnung}{#1}{#2}{#3}%
@@ -213,16 +213,22 @@
     \fi
 }
 
-% Entire paragraph created with AI (automatically collects)
-\newcommand{\aiparagraph}[3]{% #1=Tool, #2=Prompt, #3=Date
+% AI Paragraph Environment - NEUE VERSION
+\newenvironment{aiparagraph}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Vollständiger Absatz}{#1}{#2}{#3}%
         \textit{[Der folgende Absatz wurde vollständig mit #1 erstellt. Siehe KI-Details Anlage.]}
         \medskip
+        
+    \fi
+}{%
+    \ifuseAI
+        \medskip
+        \textit{[Ende des KI-generierten Absatzes]}
     \fi
 }
 
-% Table/Figure created with AI (automatically collects)
+% Table/Figure created with AI (Command - bleibt wie es ist)
 \newcommand{\aitable}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Tabelle/Abbildung}{#1}{#2}{#3}%
@@ -230,15 +236,53 @@
     \fi
 }
 
-% For code generation
-\newcommand{\aicode}[3]{% #1=Tool, #2=Prompt, #3=Date
+% AI Code Environment - KORRIGIERTE VERSION mit Box
+\RequirePackage[most]{tcolorbox} % Für schöne Boxen
+
+% Define AI Code Box Style - EINFACHE VERSION für ID-System
+\newtcolorbox{aicodebox}[3]{ % #1=ID, #2=unused, #3=unused
+    colback=blue!5!white,
+    colframe=blue!50!black,
+    fonttitle=\bfseries,
+    title={KI-generierter Code - #1},
+    arc=2mm,
+    boxrule=0.5pt,
+    left=5pt,
+    right=5pt,
+    top=5pt,
+    bottom=5pt,
+    breakable
+}
+
+% AI Code Environment mit visueller Box
+\newenvironment{aicode}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Code-Generierung}{#1}{#2}{#3}%
-        \textit{[Code generiert mit #1]}
+        \begin{aicodebox}{#1}{#2}{#3}
+    \fi
+}{%
+    \ifuseAI
+        \end{aicodebox}
     \fi
 }
 
-% For translations
+% Einzelne KI-Funktion markieren (inline)
+\newcommand{\aifunction}[4]{% #1=Tool, #2=Prompt, #3=Date, #4=Funktionsname
+    \ifuseAI
+        \addtoailist{Einzelne Funktion}{#1}{#2}{#3}%
+        \textcolor{blue}{\texttt{// <- KI-generiert (#1): #4}}
+    \fi
+}
+
+% KI-Zeile markieren (für einzelne Codezeilen)
+\newcommand{\ailine}[3]{% #1=Tool, #2=Prompt, #3=Date
+    \ifuseAI
+        \addtoailist{Code-Zeile}{#1}{#2}{#3}%
+        \textcolor{blue}{\texttt{ // <- KI (#1)}}
+    \fi
+}
+
+% For translations (Command - bleibt wie es ist)
 \newcommand{\aitranslation}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Übersetzung}{#1}{#2}{#3}%
@@ -246,7 +290,7 @@
     \fi
 }
 
-% For summaries
+% For summaries (Command - bleibt wie es ist)
 \newcommand{\aisummary}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Zusammenfassung}{#1}{#2}{#3}%

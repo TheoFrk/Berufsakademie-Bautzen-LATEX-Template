@@ -55,7 +55,7 @@ Weitere Abkürzungen: \gls{ml}, \gls{dl}
 
 \subsection{Abbildungen}
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=4cm]{images/picsum lorem.jpg}
     \caption{Beispiel-Abbildung mit korrekter BA Bautzen Formatierung}
@@ -66,7 +66,7 @@ Verweis auf Abbildung: \cref{fig:tutorial_image}
 
 \subsection{Tabellen}
 
-\begin{table}[h]
+\begin{table}[ht]
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
@@ -103,17 +103,36 @@ Verschiedene TODO-Typen:
 \idea{Das ist eine Idee für später}
 \critical{Das ist eine kritische Aufgabe}
 
-TODO-Liste:
-\begin{todolist}
- \begin{itemize}
-    \item \todo{Erste Aufgabe erledigen}
-    \item \idea{Neue Idee ausarbeiten}
-    \item \critical{Kritisches Problem lösen}
- \end{itemize}
-\end{todolist}
+TODO-Liste (Alternative 1 - TODOs außerhalb):
+\begin{itemize}
+    \item Erste Aufgabe erledigen
+    \item Neue Idee ausarbeiten
+    \item Kritisches Problem lösen
+\end{itemize}
+\todo{Erste Aufgabe erledigen}
+\idea{Neue Idee ausarbeiten}
+\critical{Kritisches Problem lösen}
+
+% Alternative 2 - Einfache Textliste:
+\textbf{TODO-Liste (Alternative 2):}
+\begin{itemize}
+    \item \textbf{TODO:} Erste Aufgabe erledigen
+    \item \textbf{IDEE:} Neue Idee ausarbeiten  
+    \item \textbf{KRITISCH:} Kritisches Problem lösen
+\end{itemize}
+
+% Alternative 3 - Mit Farben (wenn Sie obigen Code in commands.sty hinzufügen):
+% \textbf{TODO-Liste (Alternative 3 - Farbig):}
+% \begin{improvedtodolist}
+%     \item \todoinlist{Erste Aufgabe erledigen}
+%     \item \ideainlist{Neue Idee ausarbeiten}
+%     \item \criticalinlist{Kritisches Problem lösen}
+% \end{improvedtodolist}
 
 % Alle TODOs anzeigen mit: \printtodos (normalerweise am Ende des Dokuments)
 % TODOs verstecken mit: \hideTodos (in main.tex)
+% WICHTIG: \todo, \idea, \critical funktionieren NICHT in Listen!
+% Verwenden Sie stattdessen normale itemize-Listen mit Textmarkierungen
 
 % ==============================================
 % KI-KENNZEICHNUNG (Neue englische Befehle)
@@ -131,14 +150,105 @@ Dieser Textabschnitt wurde mit KI erstellt.
 \aisection{Claude 3.5}{Erstelle eine Marktanalyse für E-Commerce}{16.03.2024}
 Dieser Abschnitt wurde mit KI-Unterstützung verfasst.
 
-\subsubsection{Vollständiger Absatz}
-\aiparagraph{ChatGPT 4.0}{Schreibe einen Absatz über Digitalisierung}{17.03.2024}
-Die Digitalisierung verändert unsere Arbeitswelt fundamental. Neue Technologien ermöglichen effizientere Prozesse und schaffen gleichzeitig neue Herausforderungen für Unternehmen.
+\subsubsection{Vollständiger Absatz - NEUE Environment-Version}
+\begin{aiparagraph}{ChatGPT 4.0}{Schreibe einen Absatz über Digitalisierung}{17.03.2024}
+Die Digitalisierung verändert unsere Arbeitswelt fundamental. 
 
-\subsubsection{Weitere KI-Befehle}
+\textbf{Hier können Sie normale LaTeX-Befehle verwenden:}
+\begin{itemize}
+    \item Neue Technologien ermöglichen effizientere Prozesse
+    \item \textit{Kursiver Text} funktioniert
+    \item Mathematische Formeln: $E = mc^2$
+\end{itemize}
+
+Dies schafft gleichzeitig neue Herausforderungen für Unternehmen.
+\end{aiparagraph}
+
+\subsubsection{Code-Block - NEUE Box-Version}
+\begin{aicode}{GitHub Copilot}{Python Funktion für Datenanalyse}{19.03.2024}
+\begin{verbatim}
+def analyze_data(data):
+    """
+    Analysiert die eingegebenen Daten
+    """
+    result = data.mean()
+    return result
+
+class DataProcessor:
+    def __init__(self, data):
+        self.data = data
+    
+    def process(self):
+        return self.data * 2
+
+# Verwendung
+data = [1, 2, 3, 4, 5]
+print(analyze_data(data))
+\end{verbatim}
+
+\textbf{Erklärung:} Diese Funktionen wurden komplett von KI generiert.
+Die Box macht die KI-Generierung visuell klar erkennbar!
+\end{aicode}
+
+\subsubsection{Granulare Funktions-Markierung}
+
+\textbf{Problem:} Wie markiert man einzelne Funktionen in gemischtem Code?
+
+\textbf{Lösung 1: Kommentare im Code selbst}
+\begin{verbatim}
+# Manuell geschrieben
+def load_data(filename):
+    with open(filename, 'r') as f:
+        return f.read()
+
+def process_text(text):  # <- KI-generiert (ChatGPT): process_text
+    words = text.split()
+    return len(words)
+
+# Wieder manuell geschrieben
+def save_result(result, filename):
+    with open(filename, 'w') as f:
+        f.write(str(result))
+
+result = sum(data)  # <- KI (Copilot)
+\end{verbatim}
+
+\textbf{Lösung 2: LaTeX-Befehle nach Code-Blöcken}
+
+\begin{verbatim}
+def process_text(text):
+    words = text.split()
+    return len(words)
+\end{verbatim}
+\aifunction{ChatGPT}{Erstelle Textverarbeitungsfunktion}{20.03.2024}{process\_text}
+
+\begin{verbatim}
+result = sum(data)
+\end{verbatim}
+\ailine{Copilot}{Berechne Summe}{21.03.2024}
+
+\textbf{Lösung 3: Kompletter KI-Block (empfohlen)}
+\begin{aicode}{GitHub Copilot}{Erstelle mehrere Hilfsfunktionen}{22.03.2024}
+\begin{verbatim}
+def helper_function_1(data):
+    return data * 2
+
+def helper_function_2(result):
+    return result + 1
+\end{verbatim}
+Diese Funktionen wurden komplett von KI generiert.
+\end{aicode}
+
+\textbf{Vorteile der neuen Lösung:}
+\begin{itemize}
+    \item \textbf{Visuelle Box:} KI-Code ist sofort erkennbar
+    \item \textbf{Granulare Markierung:} Einzelne Funktionen markierbar
+    \item \textbf{Inline-Kommentare:} Einzelne Zeilen markierbar
+    \item \textbf{Flexibel:} Für alle Code-Szenarien geeignet
+\end{itemize}
+
+\subsubsection{Weitere KI-Befehle (Commands)}
 Tabelle erstellt: \aitable{Excel Copilot}{Erstelle eine Umsatztabelle}{18.03.2024}
-
-Code generiert: \aicode{GitHub Copilot}{Python Funktion für Datenanalyse}{19.03.2024}
 
 Text übersetzt: \aitranslation{DeepL}{Übersetze Abstract ins Englische}{20.03.2024}
 
@@ -247,6 +357,22 @@ Wird in Anlagen für formatierte Listen verwendet
 \begin{verbatim}
 \enableAI    % KI aktivieren
 % \disableAI % KI deaktivieren
+
+% Neue saubere Syntax (nur IDs im Text):
+\aifootnote{Tool}{Prompt}{Datum}  % → KI
+\aisection{Tool}{Prompt}{Datum}   % → KI
+
+\begin{aiparagraph}{Tool}{Prompt}{Datum}
+    Ihr Text hier
+\end{aiparagraph}                % → KI
+
+\begin{aicode}{Tool}{Prompt}{Datum}
+    Ihr Code hier (Box zeigt nur ID)
+\end{aicode}                     % → KI
+
+% Referenzierung wie bei Abbildungen:
+\ref{ai:1}    % → 1
+\cref{ai:1}   % → KI-Eintrag 1
 \end{verbatim}
 
 \textbf{TODOs verstecken:}
@@ -287,12 +413,15 @@ Wird in Anlagen für formatierte Listen verwendet
 \begin{itemize}
     \item Verwenden Sie \verb|\cref{}| statt \verb|\ref{}| für bessere Verweise
     \item Alle Bilder sollten ein aussagekräftiges Label haben
+    \item \textbf{KI-ID-System:} Verwenden Sie \verb|\cref{ai:1}| für KI-Referenzen
+    \item \textbf{Sauberer Lesefluss:} Alle KI-Details nur in der hinteren Anlage
+    \item \textbf{Keine Fußnoten-Überflutung:} KI-Befehle stören nicht mehr den Text
+    \item \textbf{Prüferfreundlich:} Hyperlinks springen zur Verwendungsstelle
     \item KI-Kennzeichnung ist bei \verb|\enableAI| verpflichtend
     \item TODOs werden automatisch gesammelt und können mit \verb|\printtodos| ausgegeben werden
     \item Die Vorlage folgt exakt den BA Bautzen Richtlinien von 2025
     \item Verwenden Sie \verb|\medskip|, \verb|\bigskip| für manuelle Abstände
     \item Bei Problemen: Logs prüfen und schrittweise kompilieren
 \end{itemize}
-
 
 \end{document}
