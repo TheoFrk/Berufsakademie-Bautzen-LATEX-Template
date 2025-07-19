@@ -132,3 +132,128 @@
 % \ifshowTodos
 %     \customwarning{TODOs sind sichtbar, verwende \string\hideTodos \space in der main.tex um diese auszublenden}
 %   \fi
+
+%------AI------
+
+
+% KI-Toggle-Funktionalität
+\newif\ifuseAI
+\useAIfalse
+
+\newcommand{\enableAI}{\useAItrue}
+\newcommand{\disableAI}{\useAIfalse}
+
+% ==============================================
+% AUTOMATISCHE KI-SAMMLUNG (wie bei .bib)
+% ==============================================
+
+% Counter für KI-Einträge
+\newcounter{aientry}
+\setcounter{aientry}{0}
+
+% Token-Liste für KI-Einträge (sammelt automatisch alle Verwendungen)
+\newtoks\aientrieslist
+\aientrieslist={}
+
+% Interner Befehl zum Hinzufügen zur KI-Liste
+\newcommand{\addtoailist}[4]{% #1=Typ, #2=Tool, #3=Prompt, #4=Datum
+    \ifuseAI
+        \stepcounter{aientry}
+        \edef\temp{%
+            \the\aientrieslist
+            \noexpand\ailistentry{\arabic{aientry}}{#1}{#2}{#3}{#4}%
+        }%
+        \global\aientrieslist=\expandafter{\temp}%
+    \fi
+}
+
+% Format für einzelnen KI-Eintrag in der Liste
+\newcommand{\ailistentry}[5]{% #1=Nummer, #2=Typ, #3=Tool, #4=Prompt, #5=Datum
+    \textbf{#2 \##1:}\\
+    \textbf{KI-Tool:} #3\\
+    \textbf{Prompt:} ``#4''\\
+    \textbf{Datum:} #5\\
+    \medskip
+}
+
+% Automatische Ausgabe aller KI-Einträge
+\newcommand{\printailist}{%
+    \ifuseAI
+        \ifnum\theaientry>0
+            \begin{attachment}[KI-Werkzeuge Details]
+                \textbf{Automatisch generierte Dokumentation aller verwendeten KI-Werkzeuge:}
+                \medskip
+                
+                \the\aientrieslist
+                
+                \textit{Insgesamt wurden \theaientry\ KI-Werkzeuge verwendet.}
+            \end{attachment}
+        \fi
+    \fi
+}
+
+% ==============================================
+% BENUTZER-BEFEHLE (automatisch sammelnd)
+% ==============================================
+
+% Fußnoten-KI-Kennzeichnung (sammelt automatisch)
+\newcommand{\aikennzeichnung}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Fußnoten-Kennzeichnung}{#1}{#2}{#3}%
+        \footnote{Dieser Textabschnitt wurde mit Hilfe von #1 erstellt. Prompt: „#2". Datum der Nutzung: #3}
+    \fi
+}
+
+% Inline-KI-Kennzeichnung (sammelt automatisch)
+\newcommand{\aiabschnitt}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Inline-Kennzeichnung}{#1}{#2}{#3}%
+        \textit{[Dieser Abschnitt wurde mit Hilfe von #1 erstellt. Siehe KI-Details Anlage.]}
+    \fi
+}
+
+% Ganzer Absatz mit KI erstellt (sammelt automatisch)
+\newcommand{\aiabsatz}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Vollständiger Absatz}{#1}{#2}{#3}%
+        \textit{[Der folgende Absatz wurde vollständig mit #1 erstellt. Siehe KI-Details Anlage.]}
+        \medskip
+    \fi
+}
+
+% Tabelle/Abbildung mit KI erstellt (sammelt automatisch)
+\newcommand{\aitabelle}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Tabelle/Abbildung}{#1}{#2}{#3}%
+        \textit{Erstellt mit Hilfe von #1. Details siehe KI-Anlage.}
+    \fi
+}
+
+% Für Code-Generierung
+\newcommand{\aicode}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Code-Generierung}{#1}{#2}{#3}%
+        \textit{[Code generiert mit #1]}
+    \fi
+}
+
+% Für Übersetzungen
+\newcommand{\aiuebersetzung}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Übersetzung}{#1}{#2}{#3}%
+        \textit{[Übersetzt mit #1]}
+    \fi
+}
+
+% Für Zusammenfassungen
+\newcommand{\aizusammenfassung}[3]{% #1=Tool, #2=Prompt, #3=Datum
+    \ifuseAI
+        \addtoailist{Zusammenfassung}{#1}{#2}{#3}%
+        \textit{[Zusammengefasst mit #1]}
+    \fi
+}
+
+% Warnung wenn KI aktiviert ist
+\ifuseAI
+    \customwarning{KI-Funktionen sind aktiviert. Alle KI-Verwendungen werden automatisch gesammelt.}
+\fi

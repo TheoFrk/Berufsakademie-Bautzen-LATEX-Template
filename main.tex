@@ -4,6 +4,12 @@
 
 
 % Einstellungen (EDIT)
+% KI-TOGGLE: Kommentiere eine Zeile aus/ein
+% ========================================
+\enableAI     % KI-Funktionen AKTIVIEREN
+% \disableAI  % KI-Funktionen DEAKTIVIEREN
+
+
 \title{TITLE} % Titel des Dokuments
 \authorname{FIRSTNAME}{MIDDLENAME}{LASTNAME} % Autorname; den Mittelnamen leer lassen, wenn keiner vorhanden ist
 \date{12.07.2024} % Datum der Einreichung oder Veröffentlichung im Format TT.MM.JJJJ
@@ -93,6 +99,9 @@
         \end{itemize}
     \end{customlistof}
 \end{attachment}
+
+% Am Ende vor den Anlagen:
+\printailist 
 
 \thispagestyle{empty} % Entfernt die Seitenzahl für diese Seite
 \section*{Selbstständigkeitserklärung} % Fügt eine nicht nummerierte Sektion für die Selbstständigkeitserklärung hinzu
