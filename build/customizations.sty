@@ -61,12 +61,18 @@
 
 % Konfiguration der Beschriftungen für Abbildungen und Tabellen
 \captionsetup[figure]{
-    labelfont=bf, % Fett gedruckte Beschriftung
-    labelsep=period % Trennzeichen ist ein Punkt
+    labelfont=bf,              % Fett: "Abbildung X."
+    labelsep=period,           % Punkt nach Nummer
+    font=normal,               % Normal: "Beschreibung"
+    justification=raggedright, % Linksbündig
+    singlelinecheck=false      % Auch kurze Texte linksbündig
 }
 \captionsetup[table]{
-    labelfont=bf, % Fett gedruckte Beschriftung
-    labelsep=period % Trennzeichen ist ein Punkt
+    labelfont=bf,              % Fett: "Tabelle X."
+    labelsep=period,           % Punkt nach Nummer  
+    font=normal,               % Normal: "Beschreibung"
+    justification=raggedright, % Linksbündig
+    singlelinecheck=false      % Auch kurze Texte linksbündig
 }
 
 % Definitionen
@@ -176,14 +182,14 @@
 \renewcommand{\cftdot}{}
 \renewcommand{\cftfigdotsep}{\cftnodots}
 \renewcommand{\cftfigpresnum}{Abbildung }
-\renewcommand{\cftfigaftersnum}{:}
-\setlength{\cftfignumwidth}{6em}
+\renewcommand{\cftfigaftersnum}{. }  % Punkt nach Nummer
+\setlength{\cftfignumwidth}{7em} 
 
 % Verzeichnisformatierung für Tabellen
 \renewcommand{\cfttabdotsep}{\cftnodots}
 \renewcommand{\cfttabpresnum}{Tabelle }
-\renewcommand{\cfttabaftersnum}{:}
-\setlength{\cfttabnumwidth}{6em}
+\renewcommand{\cfttabaftersnum}{. }
+\setlength{\cfttabnumwidth}{7em}
 
 % Glossaries
 \RequirePackage[acronym]{glossaries} % Paket für Glossare
