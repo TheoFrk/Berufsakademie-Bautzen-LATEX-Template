@@ -55,6 +55,136 @@ Beispiel:
 \autocite[Seitenzahl]{citation key}
 ```
 
+### KI-Kennzeichnung und Compliance
+
+**NEU:** Diese Vorlage bietet eine umfassende KI-Kennzeichnungsfunktionalität, die den aktuellen akademischen Standards und den Anforderungen der BA Bautzen entspricht.
+
+#### KI-Funktionen aktivieren/deaktivieren
+
+```latex
+\enableAI    % Aktiviert alle KI-Funktionen
+\disableAI   % Deaktiviert alle KI-Funktionen
+```
+
+**Wichtig:** KI-Funktionen müssen in der `main.tex` vor `\begin{document}` aktiviert werden.
+
+#### Verfügbare KI-Kennzeichnungstypen
+
+##### 1. Fußnoten-Kennzeichnung
+Für Textabschnitte, die mit KI-Unterstützung erstellt wurden:
+
+```latex
+\aifootnote{KI-Tool}{Prompt-Beschreibung}{Datum}
+```
+
+**Beispiel:**
+```latex
+Dieser Absatz behandelt Marktanalysen.\aifootnote{ChatGPT 4.0}{Erkläre Grundlagen der Marktanalyse}{15.03.2024}
+```
+
+##### 2. Inline-Kennzeichnung
+Für direkte Kennzeichnung im Text:
+
+```latex
+\aisection{KI-Tool}{Prompt-Beschreibung}{Datum}
+```
+
+**Beispiel:**
+```latex
+\aisection{Claude 3.5}{Erstelle Einführung in Digitalisierung}{16.03.2024}
+Der folgende Abschnitt wurde mit KI-Unterstützung verfasst.
+```
+
+##### 3. Vollständige Absätze
+Für komplett mit KI erstellte Textabschnitte:
+
+```latex
+\aiparagraph{KI-Tool}{Prompt-Beschreibung}{Datum}
+Der komplette Absatzinhalt hier...
+```
+
+##### 4. Tabellen und Abbildungen
+Für KI-generierte visuelle Inhalte:
+
+```latex
+\aitable{KI-Tool}{Prompt-Beschreibung}{Datum}
+```
+
+**Beispiel in einer Tabelle:**
+```latex
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        Spalte 1 & Spalte 2 \\
+        \hline
+        Daten & Werte \\
+        \hline
+    \end{tabular}
+    \caption{Umsatzdaten Q1 2024}
+    \aitable{Excel Copilot}{Erstelle Umsatztabelle für Q1}{18.03.2024}
+\end{table}
+```
+
+##### 5. Code-Generierung
+Für mit KI generierten Programmcode:
+
+```latex
+\aicode{KI-Tool}{Prompt-Beschreibung}{Datum}
+```
+
+##### 6. Übersetzungen
+Für KI-übersetzte Inhalte:
+
+```latex
+\aitranslation{KI-Tool}{Prompt-Beschreibung}{Datum}
+```
+
+##### 7. Zusammenfassungen
+Für KI-erstellte Zusammenfassungen:
+
+```latex
+\aisummary{KI-Tool}{Prompt-Beschreibung}{Datum}
+```
+
+#### Automatische KI-Dokumentation
+
+**Wichtige Neuerung:** Alle KI-Verwendungen werden automatisch gesammelt und dokumentiert.
+
+##### Automatische KI-Anlage generieren
+Am Ende des Dokuments (vor der Selbstständigkeitserklärung):
+
+```latex
+\printailist
+```
+
+Dieser Befehl erstellt automatisch eine vollständige Anlage mit allen verwendeten KI-Tools, Prompts und Daten. Die Ausgabe erfolgt nur, wenn KI-Funktionen aktiviert sind und tatsächlich verwendet wurden.
+
+#### KI-Integration in die Selbstständigkeitserklärung
+
+Die Vorlage passt die Selbstständigkeitserklärung automatisch an, wenn KI-Funktionen aktiviert sind:
+
+```latex
+% In der declaration of independence.tex wird automatisch hinzugefügt:
+\ifuseAI
+    \textbf{Bestandteile der Arbeit, die mittels Künstlicher Intelligenz entstanden sind, wurden ausdrücklich gekennzeichnet.}
+\fi
+```
+
+#### Best Practices für KI-Kennzeichnung
+
+1. **Spezifische Tool-Namen verwenden:** "ChatGPT 4.0", "Claude 3.5", "GitHub Copilot"
+2. **Aussagekräftige Prompt-Beschreibungen:** Beschreiben Sie präzise, was vom KI-Tool verlangt wurde
+3. **Exakte Datumsangabe:** Format TT.MM.JJJJ verwenden
+4. **Vollständige Transparenz:** Alle KI-Nutzungen kennzeichnen, auch kleinste Unterstützungen
+
+#### Compliance und Richtlinien
+
+- ✅ **BA Bautzen konform:** Entspricht den aktuellen Richtlinien zur KI-Kennzeichnung
+- ✅ **Automatische Sammlung:** Keine vergessenen KI-Verwendungen
+- ✅ **Flexible Kennzeichnung:** Verschiedene Kennzeichnungsarten je nach Kontext
+- ✅ **Prüferfreundlich:** Übersichtliche Dokumentation in separater Anlage
+
 ### Struktur
 
 #### Definition von Abschnitten und Unterabschnitten
@@ -129,14 +259,16 @@ Sie können strukturierte TODO-Listen mit der `todolist`-Umgebung erstellen:
   \item \critical{Dritte Aufgabe (Kritisch)}
 \end{todolist}
 ```
-#### Defintionen
-Um Defintionen zu schreiben nutze dies
+
+#### Definitionen
+Um Definitionen zu schreiben nutze dies
 ```latex
 \begin{definition}
 Let \(f\) be a function whose derivative exists in every point, then \(f\) is 
 a continuous function.
 \end{definition}
 ```
+
 #### Anzeigen aller TODOs
 
 Um alle TODOs an einer bestimmten Stelle im Dokument anzuzeigen, verwenden Sie den Befehl:
@@ -186,6 +318,7 @@ Am Anfang des Bodys im Dokuments
 - `caption`
 - `subfiles`
 - `glossaries`
+- `todonotes` (für TODO-Funktionalität)
 
 ### Hinweise
 
@@ -195,6 +328,7 @@ Am Anfang des Bodys im Dokuments
 - Cleveref-Paket ist für Deutsch konfiguriert.
 - Bibliografieeinstellungen sind definiert, Ressourcen werden mit `\addbibresource` hinzugefügt.
 - Seitenformatierungs- und Layoutanpassungen werden für ein besseres Dokumentenlayout vorgenommen.
+- **KI-Funktionen sind optional und müssen explizit aktiviert werden.**
 
 ---
 
@@ -240,6 +374,89 @@ Example:
 ```latex
 \autocite[pagenumber]{citation key}
 ```
+
+### AI Attribution and Compliance
+
+**NEW:** This template provides comprehensive AI attribution functionality that meets current academic standards and BA Bautzen requirements.
+
+#### Enable/Disable AI Functions
+
+```latex
+\enableAI    % Enables all AI functions
+\disableAI   % Disables all AI functions
+```
+
+**Important:** AI functions must be activated in `main.tex` before `\begin{document}`.
+
+#### Available AI Attribution Types
+
+##### 1. Footnote Attribution
+For text sections created with AI assistance:
+
+```latex
+\aifootnote{AI-Tool}{Prompt-Description}{Date}
+```
+
+**Example:**
+```latex
+This paragraph discusses market analysis.\aifootnote{ChatGPT 4.0}{Explain basics of market analysis}{15.03.2024}
+```
+
+##### 2. Inline Attribution
+For direct attribution within text:
+
+```latex
+\aisection{AI-Tool}{Prompt-Description}{Date}
+```
+
+##### 3. Complete Paragraphs
+For entirely AI-created text sections:
+
+```latex
+\aiparagraph{AI-Tool}{Prompt-Description}{Date}
+The complete paragraph content here...
+```
+
+##### 4. Tables and Figures
+For AI-generated visual content:
+
+```latex
+\aitable{AI-Tool}{Prompt-Description}{Date}
+```
+
+##### 5. Code Generation
+For AI-generated code:
+
+```latex
+\aicode{AI-Tool}{Prompt-Description}{Date}
+```
+
+##### 6. Translations
+For AI-translated content:
+
+```latex
+\aitranslation{AI-Tool}{Prompt-Description}{Date}
+```
+
+##### 7. Summaries
+For AI-created summaries:
+
+```latex
+\aisummary{AI-Tool}{Prompt-Description}{Date}
+```
+
+#### Automatic AI Documentation
+
+**Important Feature:** All AI usage is automatically collected and documented.
+
+##### Generate Automatic AI Appendix
+At the end of the document (before the declaration of independence):
+
+```latex
+\printailist
+```
+
+This command automatically creates a complete appendix with all used AI tools, prompts, and dates.
 
 ### Structure
 
@@ -356,6 +573,7 @@ This feature is particularly useful for getting an overview of all open tasks at
 - `caption`
 - `subfiles`
 - `glossaries`
+- `todonotes` (for TODO functionality)
 
 ### Notes
 
@@ -365,3 +583,4 @@ This feature is particularly useful for getting an overview of all open tasks at
 - Cleveref package is configured for German.
 - Bibliography settings are defined, with resources added using `\addbibresource`.
 - Page formatting and layout adjustments are made for better document appearance.
+- **AI functions are optional and must be explicitly enabled.**
