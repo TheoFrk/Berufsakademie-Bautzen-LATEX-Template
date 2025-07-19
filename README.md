@@ -159,6 +159,7 @@ Am Ende des Dokuments (vor der Selbstständigkeitserklärung):
 ```
 
 Dieser Befehl erstellt automatisch eine vollständige Anlage mit allen verwendeten KI-Tools, Prompts und Daten. Die Ausgabe erfolgt nur, wenn KI-Funktionen aktiviert sind und tatsächlich verwendet wurden.
+Jeder Eintrag enthält die Seitenzahl der KI-Verwendung und bietet einen Link zurück zur entsprechenden Stelle im Text.
 
 #### KI-Integration in die Selbstständigkeitserklärung
 
@@ -457,6 +458,7 @@ At the end of the document (before the declaration of independence):
 ```
 
 This command automatically creates a complete appendix with all used AI tools, prompts, and dates.
+Each entry shows the page where the AI was used and links back to that location in the document.
 
 ### Structure
 
