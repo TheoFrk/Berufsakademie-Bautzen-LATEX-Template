@@ -159,21 +159,24 @@
 % Interner Befehl zum Hinzufügen zur KI-Liste
 \newcommand{\addtoailist}[4]{% #1=Typ, #2=Tool, #3=Prompt, #4=Datum
     \ifuseAI
-        \stepcounter{aientry}
+        \refstepcounter{aientry}%
+        \phantomsection\label{aiuse-\theaientry}%
         \edef\temp{%
             \the\aientrieslist
-            \noexpand\ailistentry{\arabic{aientry}}{#1}{#2}{#3}{#4}%
+            \noexpand\ailistentry{\theaientry}{#1}{#2}{#3}{#4}{aiuse-\theaientry}%
         }%
         \global\aientrieslist=\expandafter{\temp}%
     \fi
 }
 
 % Format für einzelnen KI-Eintrag in der Liste
-\newcommand{\ailistentry}[5]{% #1=Nummer, #2=Typ, #3=Tool, #4=Prompt, #5=Datum
+\newcommand{\ailistentry}[6]{% #1=Nummer, #2=Typ, #3=Tool, #4=Prompt, #5=Datum, #6=Label
+    \phantomsection\label{ailistentry-#1}%
     \textbf{#2 \##1:}\\
     \textbf{KI-Tool:} #3\\
     \textbf{Prompt:} ``#4''\\
     \textbf{Datum:} #5\\
+    \textbf{Seite:} \hyperref[#6]{\pageref{#6}}\\
     \medskip
 }
 
@@ -201,7 +204,7 @@
 \newcommand{\aifootnote}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Fußnoten-Kennzeichnung}{#1}{#2}{#3}%
-        \footnote{Dieser Textabschnitt wurde mit Hilfe von #1 erstellt. Prompt: „#2". Datum der Nutzung: #3}
+\footnote{Dieser Textabschnitt wurde mit Hilfe von #1 erstellt. Prompt: „#2". Datum der Nutzung: #3. Siehe \hyperref[ailistentry-\theaientry]{KI-Details} auf S.~\pageref{ailistentry-\theaientry}.}
     \fi
 }
 
@@ -209,7 +212,7 @@
 \newcommand{\aisection}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Inline-Kennzeichnung}{#1}{#2}{#3}%
-        \textit{[Dieser Abschnitt wurde mit Hilfe von #1 erstellt. Siehe KI-Details Anlage.]}
+        \textit{[Dieser Abschnitt wurde mit Hilfe von #1 erstellt. Siehe \hyperref[ailistentry-\theaientry]{KI-Details} auf S.~\pageref{ailistentry-\theaientry}.]}
     \fi
 }
 
@@ -217,9 +220,10 @@
 \newenvironment{aiparagraph}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Vollständiger Absatz}{#1}{#2}{#3}%
-        \textit{[Der folgende Absatz wurde vollständig mit #1 erstellt. Siehe KI-Details Anlage.]}
+        \def\thisaientry{\theaientry}%
+        \textit{[Der folgende Absatz wurde vollständig mit #1 erstellt. Siehe \hyperref[ailistentry-\thisaientry]{KI-Details} auf S.~\pageref{ailistentry-\thisaientry}.]}
         \medskip
-        
+
     \fi
 }{%
     \ifuseAI
@@ -232,7 +236,7 @@
 \newcommand{\aitable}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Tabelle/Abbildung}{#1}{#2}{#3}%
-        \textit{Erstellt mit Hilfe von #1. Details siehe KI-Anlage.}
+        \textit{Erstellt mit Hilfe von #1. Details siehe \hyperref[ailistentry-\theaientry]{KI-Anlage} auf S.~\pageref{ailistentry-\theaientry}.}
     \fi
 }
 
@@ -258,11 +262,13 @@
 \newenvironment{aicode}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Code-Generierung}{#1}{#2}{#3}%
+        \def\thisaientry{\theaientry}%
         \begin{aicodebox}{#1}{#2}{#3}
     \fi
 }{%
     \ifuseAI
         \end{aicodebox}
+        \textit{[Siehe \hyperref[ailistentry-\thisaientry]{KI-Anlage} auf S.~\pageref{ailistentry-\thisaientry}.]}
     \fi
 }
 
@@ -270,7 +276,7 @@
 \newcommand{\aifunction}[4]{% #1=Tool, #2=Prompt, #3=Date, #4=Funktionsname
     \ifuseAI
         \addtoailist{Einzelne Funktion}{#1}{#2}{#3}%
-        \textcolor{blue}{\texttt{// <- KI-generiert (#1): #4}}
+        \textcolor{blue}{\texttt{// <- KI-generiert (#1): #4}}\textcolor{blue}{\texttt{ [Anlage \hyperref[ailistentry-\theaientry]{\theaientry}]}}
     \fi
 }
 
@@ -278,7 +284,7 @@
 \newcommand{\ailine}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Code-Zeile}{#1}{#2}{#3}%
-        \textcolor{blue}{\texttt{ // <- KI (#1)}}
+        \textcolor{blue}{\texttt{ // <- KI (#1)}}\textcolor{blue}{\texttt{ [Anlage \hyperref[ailistentry-\theaientry]{\theaientry}]}}
     \fi
 }
 
@@ -286,7 +292,7 @@
 \newcommand{\aitranslation}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Übersetzung}{#1}{#2}{#3}%
-        \textit{[Übersetzt mit #1]}
+        \textit{[Übersetzt mit #1. Siehe \hyperref[ailistentry-\theaientry]{KI-Anlage} auf S.~\pageref{ailistentry-\theaientry}.]}
     \fi
 }
 
@@ -294,7 +300,7 @@
 \newcommand{\aisummary}[3]{% #1=Tool, #2=Prompt, #3=Date
     \ifuseAI
         \addtoailist{Zusammenfassung}{#1}{#2}{#3}%
-        \textit{[Zusammengefasst mit #1]}
+        \textit{[Zusammengefasst mit #1. Siehe \hyperref[ailistentry-\theaientry]{KI-Anlage} auf S.~\pageref{ailistentry-\theaientry}.]}
     \fi
 }
 
